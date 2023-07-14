@@ -1,7 +1,7 @@
 let express=require('express');
 let mysql=require('mysql');
 let Sha1=require('sha1');
- 
+  
 class Server{
     constructor(){
         this.port=process.env.PORT;
