@@ -1,0 +1,67 @@
+<!-- ESTO ES HTML 5 -->
+<!DOCTYPE html>
+
+<!-- EL ATRIBUTO LANG SIGNIFICA EL IDIOMA -->
+<html lang="es">
+
+    <!-- SON LOS METADATOS QUE SELE PASAN AL NAVEGADOR CON INFORMACION DE LA PAGINA -->
+    <head>
+        
+        <meta charset="utf-8">
+        
+        <title>La Ceiba</title>    
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Videojuegos & Desarrollo">
+        <meta name="description" content="Ejemplo de formulario de acceso basado en HTML5 y CSS">
+        <meta name="keywords" content="login,formulariode acceso html">
+        <link rel="shortcut icon" href="/sources/img/icons8-oak-tree-16.png" type="image/x-icon">
+        <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet"> 
+        
+        <!-- Link hacia el archivo de estilos css -->
+        <link rel="stylesheet" href="../sources/css/login.css">
+                
+    </head>
+
+    <!-- CUERPO DE LA PAGINA -->
+    <body>
+        <!-- Formulario para registrar usuario -->
+        <div id="contenedor">
+            <div id="contenedorcentrado">
+                <div id="login">
+                    <form action="/registrar" id="loginform">
+                        <label for="nrj">N° reloj</label>
+                        <input type="text" name="nrj" id="nrj" tabindex="11" required>
+
+                        <label for="nombre">Nombres</label>
+                        <input type="text" name="nombre" id="nombre" tabindex="12" required>
+                        
+                        <label for="passw">Contraseña</label>
+                        <input type="password" name="passw" id="passw" tabindex="22" required>
+
+                        <label for="usuario">Usuario</label>
+                        <input type="radio" name="privilegio" id="usuario" value="Usuario">
+                        <label for="administrador">Administrador</label>
+                        <input type="radio" name="privilegio" id="administrador" value="Administrador">
+                        
+                        <input type="submit" tabindex="25" value="Registrar">
+                    </form>
+                </div>
+                
+                <div id="derecho">
+                    <div class="titulo">
+                        Bienvenido
+                    </div>
+                    <hr>
+                    <div class="pie-form">
+                        <a href="#">¿Perdiste tu contraseña?</a>
+                        <a href="#">¿No tienes Cuenta? Registrate</a>
+                        <hr>
+                        <a href="/">« Volver</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
