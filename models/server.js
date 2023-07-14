@@ -120,7 +120,7 @@ class Server{
     }
     listen(){
         this.app.listen(this.port,()=>{
-            console.log('http://127.0.0.1');
+            console.log('http://0.0.0.0:'+this.port);
         });
     }
 }
