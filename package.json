@@ -2,10 +2,10 @@
   "name": "inventario",
   "version": "1.0.0",
   "description": "Inventario para integradora",
-  "main": "public/index.html",
+  "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node public/index.html"
+    "start": "node index.html"
   },
   "author": "Colaborativo_TDW41",
   "license": "ISC",
