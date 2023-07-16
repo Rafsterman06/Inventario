@@ -25,19 +25,19 @@ foreign key (id_cat)references categorias (id_cat) on update cascade on delete c
 foreign key (id_prov)references provedor (id_prov) on update cascade on delete cascade,
 primary key (id_product));
  
-create table Requerimiento(
-id_req int  not null,
-id_cliente int  not null,
-fecha timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP ,
-foreign key (id_cliente)references cliente (id_cliente) on update cascade on delete cascade,
-primary key (id_req));
- 
 create table cliente( 
 id_cliente int  not null,
 nombre varchar (100)  not null,
 Direccion varchar (50) ,
 telefono int  ,
 primary key (id_cliente));
+ 
+create table Requerimiento(
+id_req int  not null,
+id_cliente int  not null,
+fecha timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP ,
+foreign key (id_cliente)references cliente (id_cliente) on update cascade on delete cascade,
+primary key (id_req));
  
 create table PEDIDO( 
 id_req int  not null,
