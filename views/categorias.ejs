@@ -1,38 +1,72 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-	<meta charset="UTF-8">
-	<title>La Ceiba</title>
-	<link rel="stylesheet" href="/sources/css/estilos.css">
-	<link rel="shortcut icon" href="sources/img/icons8-oak-tree-16.png" type="image/x-icon">
-</head>
-<body>
-	<header class="header">
-		<div class="container">
-			<div class="logo">
-				<h1>La Ceiba</h1>
-			</div>
-			<nav class="menu">
-				<a href="paginas/inicio_de_sesion.html">Login</a>
-				<a href="/paginas/nosotros.html">Nosotros</a>
-				<a target="_blank" href="https://www.facebook.com/profile.php?id=100066171731818&mibextid=LQQJ4d">Faceboock</a>
-				<a href="#">Contacto</a>
-			</nav>
-		</div>
-	</header>
-	<div class="capa">
-		<div>
-			<!-----Categorias----->
-			<input type="text" name="id_cat" id="categorias" placeholder="ID" required>
-			<input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
-			<input type="text" name="Descripcion" id="descripcion" placeholder="Descripcion" required>
-			<button type="button">Create</button>
-			<button type="button">Read</button>
-			<button type="button">Update</button>
-			<button type="button">Delete</button>
-			<button type="button">Buscar</button>
-		</div>
-    </div>
+<!-- Define que el documento esta bajo el estandar de HTML 5 -->
+<!doctype html>
 
-</body>
+<!-- Representa la raíz de un documento HTML o XHTML. Todos los demás elementos deben ser descendientes de este elemento. -->
+<html lang="es">
+    
+    <head>
+        
+        <meta charset="utf-8">
+        
+        <title>La Ceiba</title>    
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Videojuegos & Desarrollo">
+        <meta name="description" content="Ejemplo de formulario de acceso basado en HTML5 y CSS">
+        <meta name="keywords" content="login,formulariode acceso html">
+        <link rel="shortcut icon" href="/sources/img/icons8-oak-tree-16.png" type="image/x-icon">
+        <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet"> 
+        <!-- Link hacia el archivo de estilos css -->
+        <link rel="stylesheet" href="../sources/css/categoria.css">
+    </head>
+    <body>
+		<div id="contenedor">
+			<div id="contenedorcentrado">
+				<div id="login">
+					<form id="loginform" action="/login">
+						<fieldset>
+							<div class="divinput">
+								<label for="id_cat">ID</label>
+								<input type="text" name="id_cat" id="categorias" placeholder="ID" required>
+                            </div>
+                            <div class="divinput">
+								<label for="nombre">Nombre</label>
+                                <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
+                            </div>
+                            <div class="divinput">
+								<label for="descripcion">Descripcion</label>
+								<input type="text" name="descripcion" id="descripcion" placeholder="Descripcion" required>
+                            </div>
+                            <div class="divbutton">
+                                <button type="button">Create</button>
+                                <button type="button">Read</button>
+                                <button type="button">Update</button>
+                                <button type="button">Delete</button>
+                                <button type="button">Buscar</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            <div id="contenedortabla">
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Descripcion</th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <%=id_cat %>
+                        </th>
+                        <th>
+                            <%=nombre %>
+                        </th>
+                        <th>
+                            <%=descripcion%>
+                        </th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </body>
 </html>

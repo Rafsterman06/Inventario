@@ -20,13 +20,20 @@ class Server{
         });
 
         this.app.get("/gocategoria",(req,res)=>{
+            let id_cat='';
+            let nombre='';
+            let descripcion='';
 
-            res.render('categorias');
+            res.render('categorias',{id_cat:id_cat,nombre:nombre,descripcion:descripcion});
         });
 
         this.app.get("/gocliente",(req,res)=>{
+            let id_usu='';
+            let nombre='';
+            let direccion='';
+            
 
-            res.render('cliente');
+            res.render('cliente',{id_usu:id_usu,nombre:nombre,direccion:direccion});
         });
 
         this.app.get("/registrar",(req,res)=>{
