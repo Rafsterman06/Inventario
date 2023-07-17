@@ -140,7 +140,7 @@ class Server{
     }
     listen(){
         this.app.listen(this.port,()=>{
-            console.log('http://0.0.0.0:'+this.port);
+            console.log(this.dbdatabase+','+this.dbhost+','+this.dbpassword+','+this.dbport+','+this.dburl+','+this.dbuser);
         });
     }
 }
