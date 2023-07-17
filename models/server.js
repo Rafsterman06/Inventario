@@ -1,19 +1,30 @@
 let express=require('express');
 let mysql=require('mysql');
 let Sha1=require('sha1');
-  
+
 class Server{
     constructor(){
         this.port=process.env.PORT;
         this.app=express();
         this.routes();
         this.middlewares();
+
+        this.dbhost=process.env.MYSQLHOST;
+        this.dbdatabase=process.env.MYSQLDATABASE;
+        this.dbport=process.env.MYSQLPORT;
+        this.dbpassword=process.env.MYSQLPASSWORD;
+        this.dbuser=process.env.MYSQLUSER;
+        this.dburl=process.env.MYSQLURL;
     }
     middlewares(){
         this.app.use(express.static('public'));
         this.app.set('view engine', 'ejs');
     }
     routes(){
+        this.app.get("/goregistrar",(req,res)=>{
+            res.render('/registrar');
+        });
+
         this.app.get("/goproveedor",(req,res)=>{
 
             res.render('proveedor');
@@ -23,17 +34,18 @@ class Server{
             let id_cat='';
             let nombre='';
             let descripcion='';
-
+            
             res.render('categorias',{id_cat:id_cat,nombre:nombre,descripcion:descripcion});
         });
-
+        
         this.app.get("/gocliente",(req,res)=>{
             let id_usu='';
             let nombre='';
             let direccion='';
+            let telefono='';
             
 
-            res.render('cliente',{id_usu:id_usu,nombre:nombre,direccion:direccion});
+            res.render('cliente',{id_usu:id_usu,nombre:nombre,direccion:direccion,telefono:telefono});
         });
 
         this.app.get("/registrar",(req,res)=>{
@@ -44,9 +56,11 @@ class Server{
             let passSha1=Sha1(passw);
 
             let conn=mysql.createConnection({
-                user:'root',
-                password:'1Q2W3E4R5T6Y',
-                database:'ceiba'
+                user:this.dbuser,
+                password:this.dbpassword,
+                database:this.dbdatabase,
+                port:this.dbport,
+                host:this.dbhost
             });
 
             if(rol=="Usuario"){
@@ -85,11 +99,11 @@ class Server{
             let passSha1=Sha1(passw);
             
             let conn=mysql.createConnection({
-                host:'localhost',
-                user:'root',
-                password:'1Q2W3E4R5T6Y',
-                database:'ceiba',
-                insecureAuth : true
+                user:this.dbuser,
+                password:this.dbpassword,
+                database:this.dbdatabase,
+                port:this.dbport,
+                host:this.dbhost
             });
             conn.connect(function(err){
                 if(err) throw err;
