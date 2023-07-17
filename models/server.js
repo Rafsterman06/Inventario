@@ -1,7 +1,7 @@
 let express=require('express');
 let mysql=require('mysql');
 let Sha1=require('sha1');
-import {dbdatabase,dbhost,dbpassword,dbport,dbuser,dburl} from './config';
+import {dbdatabase,dbhost,dbpassword,dbport,dbuser,dburl} from './config.js';
 
 class Server{
     constructor(){
