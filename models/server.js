@@ -9,12 +9,12 @@ class Server{
         this.routes();
         this.middlewares();
 
-        this.dbhost=process.env.MYSQLHOST;
         this.dbdatabase=process.env.MYSQLDATABASE;
-        this.dbport=process.env.MYSQLPORT;
+        this.dbhost=process.env.MYSQLHOST;
         this.dbpassword=process.env.MYSQLPASSWORD;
+        this.dbport=process.env.MYSQLPORT;
         this.dbuser=process.env.MYSQLUSER;
-        this.dburl=process.env.MYSQLURL;
+        this.dburl=process.env.MYSQL_URL;
     }
     middlewares(){
         this.app.use(express.static('public'));
