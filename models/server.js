@@ -66,7 +66,7 @@ class Server{
                 conn.connect(function(err){
                     if(err) throw err;
                     console.log("conectado!!");
-                    let sql="INSERT INTO usuarios (id_us,usuario,passwordd,rol) VALUES ("+id_us+",'"+nombre+"','"+passSha1+"','"+rol+"')";
+                    let sql="INSERT INTO usuarios (id_us,usuario,passwordd,rol) VALUES ('"+id_us+"','"+nombre+"','"+passSha1+"','"+rol+"')";
                     conn.query(sql,function(err){
                         if(err) throw err;
                         else{
@@ -81,7 +81,7 @@ class Server{
                 conn.connect(function(err){
                     if(err) throw err;
                     console.log("conectado!!");
-                    let sql="INSERT INTO usuarios (id_us,usuario,passwordd,rol) VALUES ("+id_us+",'"+nombre+"','"+passSha1+"','"+rol+"')";
+                    let sql="INSERT INTO usuarios (id_us,usuario,passwordd,rol) VALUES ('"+id_us+"','"+nombre+"','"+passSha1+"','"+rol+"')";
                     conn.query(sql,function(err){
                         if(err) throw err;
                         else{
