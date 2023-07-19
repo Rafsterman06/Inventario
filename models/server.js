@@ -21,7 +21,7 @@ class Server{
     }
     routes(){
         this.app.get("/goregistrar",(req,res)=>{
-            res.render('/registrar');
+            res.render('registrar');
         });
 
         this.app.get("/goproveedor",(req,res)=>{
@@ -132,7 +132,7 @@ class Server{
                         }
                     }
                     else{
-                        console.log("Error");
+                        res.send('no se ha encontrado nada!!');
                     }
                 });
             });
