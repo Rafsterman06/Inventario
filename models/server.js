@@ -71,8 +71,7 @@ class Server{
                         if(err) throw err;
                         else{
                             console.log("Archivo Registrado con exito");
-                            alert('agregado con exito');
-                            res.render('loginadm');
+                            res.render('/goregistrar');
                         }
                     });
                 });
@@ -86,6 +85,7 @@ class Server{
                         if(err) throw err;
                         else{
                             console.log("Archivo Registrado con exito");
+                            res.render('/goregistrar');
                         }
                     });
                 });
