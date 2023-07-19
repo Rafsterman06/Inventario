@@ -71,7 +71,7 @@ class Server{
                         if(err) throw err;
                         else{
                             console.log("Archivo Registrado con exito");
-                            res.render('/goregistrar');
+                            res.render('registrar');
                         }
                     });
                 });
@@ -85,7 +85,7 @@ class Server{
                         if(err) throw err;
                         else{
                             console.log("Archivo Registrado con exito");
-                            res.render('/goregistrar');
+                            res.render('registrar');
                         }
                     });
                 });
