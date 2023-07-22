@@ -28,19 +28,15 @@
                     <form id="loginform" action="/login">
                         <fieldset>
                             <div class="divinput">
-                                <label for="id_cliente">ID</label>
-                                <input type="text" name="id_cliente" id="id_cliente" placeholder="ID" required>
-                            </div>
-                            <div class="divinput">
-                                <label for="nombre">Nombre</label>
+                                <label for="nombre">ID SALIDA</label>
                                 <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
                             </div>
                             <div class="divinput">
-                                <label for="direccion">Direccion</label>
+                                <label for="direccion">ID CLIENTE</label>
                                 <input type="text" name="direccion" id="direccion" placeholder="Direccion" required>
                             </div>
                             <div class="divinput">
-                                <label for="telefono">Telefono</label>
+                                <label for="telefono">FECHA</label>
                                 <input type="text" name="telefono" id="telefono" placeholder="Telefono" required>
                             </div>
                             <div class="divbutton">
@@ -57,12 +53,11 @@
             <div id="contenedortabla">
                 <table>
                     <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Direccion</th>
-                        <th>Telefono</th>
+                        <th>ID SALIDA</th>
+                        <th>ID CLIENTE</th>
+                        <th>FECHA</th>
                     </tr>
-                    <tbody id="tablacliente"></tbody>
+                    <tbody id="tablasalida"></tbody>
                     
                 </table>
             </div>

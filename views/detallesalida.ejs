@@ -28,20 +28,24 @@
                     <form id="loginform" action="/login">
                         <fieldset>
                             <div class="divinput">
-                                <label for="id_cliente">ID</label>
-                                <input type="text" name="id_cliente" id="id_cliente" placeholder="ID" required>
+                                <label for="id_detallesalida">ID DETALLE SALIDA</label>
+                                <input type="text" name="id_detallesalida" id="id_detallesalida" placeholder="ID" required>
                             </div>
                             <div class="divinput">
-                                <label for="nombre">Nombre</label>
-                                <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
+                                <label for="id_salida">ID SALIDA</label>
+                                <input type="text" name="id_salida" id="id_salida" placeholder="ID SALIDA" required>
                             </div>
                             <div class="divinput">
-                                <label for="direccion">Direccion</label>
-                                <input type="text" name="direccion" id="direccion" placeholder="Direccion" required>
+                                <label for="id_product">ID PRODUCTO</label>
+                                <input type="text" name="id_product" id="id_product" placeholder="Direccion" required>
                             </div>
                             <div class="divinput">
-                                <label for="telefono">Telefono</label>
-                                <input type="text" name="telefono" id="telefono" placeholder="Telefono" required>
+                                <label for="fecha">FECHA</label>
+                                <input type="text" name="fecha" id="fecha" placeholder="FECHA" required>
+                            </div>
+                            <div class="divinput">
+                                <label for="cantidad">CANTIDAD</label>
+                                <input type="text" name="cantidad" id="cantidad" placeholder="CANTIDAD" required>
                             </div>
                             <div class="divbutton">
                                 <button type="button">Create</button>
@@ -57,12 +61,13 @@
             <div id="contenedortabla">
                 <table>
                     <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Direccion</th>
-                        <th>Telefono</th>
+                        <th>ID DETALLE SALIDA</th>
+                        <th>ID SALIDA</th>
+                        <th>ID PRODUCTO</th>
+                        <th>FECHA</th>
+                        <th>CANTIDAD</th>
                     </tr>
-                    <tbody id="tablacliente"></tbody>
+                    <tbody id="tabladetallesalida"></tbody>
                     
                 </table>
             </div>

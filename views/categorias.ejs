@@ -16,7 +16,7 @@
         <link rel="shortcut icon" href="/sources/img/icons8-oak-tree-16.png" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet"> 
         <!-- Link hacia el archivo de estilos css -->
-        <link rel="stylesheet" href="../sources/css/categoria.css">
+        <link rel="stylesheet" href="../sources/css/categorias.css">
     </head>
     <body>
 		<div id="contenedor">
@@ -26,7 +26,7 @@
 						<fieldset>
 							<div class="divinput">
 								<label for="id_cat">ID</label>
-								<input type="text" name="id_cat" id="categorias" placeholder="ID" required>
+								<input type="text" name="id_cat" id="id_cat" placeholder="ID" required>
                             </div>
                             <div class="divinput">
 								<label for="nombre">Nombre</label>
@@ -54,17 +54,7 @@
                         <th>Nombre</th>
                         <th>Descripcion</th>
                     </tr>
-                    <tr>
-                        <th>
-                            <%=id_cat %>
-                        </th>
-                        <th>
-                            <%=nombre %>
-                        </th>
-                        <th>
-                            <%=descripcion%>
-                        </th>
-                    </tr>
+                    <tbody id="tablacategoria"></tbody>
                 </table>
             </div>
         </div>

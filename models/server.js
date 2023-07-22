@@ -1,6 +1,8 @@
 let express=require('express');
 let mysql=require('mysql');
 let Sha1=require('sha1');
+const Read = require('./read');
+let read=new Read();
 
 class Server{
     constructor(){
@@ -20,33 +22,198 @@ class Server{
         this.app.set('view engine', 'ejs');
     }
     routes(){
+        this.app.get("/gocategoria",(req,res)=>{
+            let conn=mysql.createConnection({
+                user:this.dbuser,
+                password:this.dbpassword,
+                database:this.dbdatabase,
+                port:this.dbport,
+                host:this.dbhost
+
+            });
+            conn.connect(function (err){
+                if(err) throw err;
+                else{
+                    let sql="SELECT * FROM categorias;"
+                    conn.query(sql,function(err,result){
+                        if(result.length>0){
+                            res.render('categorias');
+                            read.readcategoria(result);
+                        }
+                        else{
+                            res.render('categorias');
+                        }
+                    });
+                }
+            });
+            
+        });
+        this.app.get("/gocliente",(req,res)=>{
+            //falta poner un query para imprimir al comienzo de cada vez que se abra esta ventana
+            let conn=mysql.createConnection({
+                user:this.dbuser,
+                password:this.dbpassword,
+                database:this.dbdatabase,
+                port:this.dbport,
+                host:this.dbhost
+
+            });
+            conn.connect(function (err){
+                if(err) throw err;
+                else{
+                    let sql="SELECT * FROM cliente;"
+                    conn.query(sql,function(err,result){
+                        if(result.length>0){
+                            res.render('cliente');
+                            //read.readcliente(result);
+                        }
+                        else{
+                            res.render('cliente');
+                        }
+                    });
+                }
+            });
+            
+        });
+        this.app.get("/godetallesalida",(req,res)=>{
+            //falta poner un query para imprimir al comienzo de cada vez que se abra esta ventana
+            let conn=mysql.createConnection({
+                user:this.dbuser,
+                password:this.dbpassword,
+                database:this.dbdatabase,
+                port:this.dbport,
+                host:this.dbhost
+
+            });
+            conn.connect(function (err){
+                if(err) throw err;
+                else{
+                    let sql="SELECT * FROM detallesalida;"
+                    conn.query(sql,function(err,result){
+                        if(result.length>0){
+                            res.render('detallesalida');
+                            //read.readdetallesalida(result);
+                        }
+                        else{
+                            res.render('detallesalida');
+                        }
+                    });
+                }
+            });
+            
+        });
+        this.app.get("/goproducto",(req,res)=>{
+            //falta poner un query para imprimir al comienzo de cada vez que se abra esta ventana
+            let conn=mysql.createConnection({
+                user:this.dbuser,
+                password:this.dbpassword,
+                database:this.dbdatabase,
+                port:this.dbport,
+                host:this.dbhost
+
+            });
+            conn.connect(function (err){
+                if(err) throw err;
+                else{
+                    let sql="SELECT * FROM producto;"
+                    conn.query(sql,function(err,result){
+                        if(result.length>0){
+                            res.render('producto');
+                            read.readproducto(result);
+                        }
+                        else{
+                            res.render('producto');
+                        }
+                    });
+                }
+            });
+            
+        });
+        this.app.get("/goproveedor",(req,res)=>{
+            //falta poner un query para imprimir al comienzo de cada vez que se abra esta ventana
+            let conn=mysql.createConnection({
+                user:this.dbuser,
+                password:this.dbpassword,
+                database:this.dbdatabase,
+                port:this.dbport,
+                host:this.dbhost
+
+            });
+            conn.connect(function (err){
+                if(err) throw err;
+                else{
+                    let sql="SELECT * FROM provedor;"
+                    conn.query(sql,function(err,result){
+                        if(result.length>0){
+                            res.render('proveedor');
+                            read.readproveedor(result);
+                        }
+                        else{
+                            res.render('proveedor');
+                        }
+                    });
+                }
+            });
+            
+        });
+        this.app.get("/gosalida",(req,res)=>{
+            //falta poner un query para imprimir al comienzo de cada vez que se abra esta ventana
+            let conn=mysql.createConnection({
+                user:this.dbuser,
+                password:this.dbpassword,
+                database:this.dbdatabase,
+                port:this.dbport,
+                host:this.dbhost
+
+            });
+            conn.connect(function (err){
+                if(err) throw err;
+                else{
+                    let sql="SELECT * FROM salida;"
+                    conn.query(sql,function(err,result){
+                        if(result.length>0){
+                            res.render('salida');
+                            read.readsalida(result);
+                        }
+                        else{
+                            res.render('salida');
+                        }
+                    });
+                }
+            });
+            
+        });
+        this.app.get("/gousuario",(req,res)=>{
+            //falta poner un query para imprimir al comienzo de cada vez que se abra esta ventana
+            let conn=mysql.createConnection({
+                user:this.dbuser,
+                password:this.dbpassword,
+                database:this.dbdatabase,
+                port:this.dbport,
+                host:this.dbhost
+
+            });
+            conn.connect(function (err){
+                if(err) throw err;
+                else{
+                    let sql="SELECT * FROM usuarios;"
+                    conn.query(sql,function(err,result){
+                        if(result.length>0){
+                            res.render('usuario');
+                            //read.readsalida(result);
+                        }
+                        else{
+                            res.render('usuario');
+                        }
+                    });
+                }
+            });
+            
+        });
         this.app.get("/goregistrar",(req,res)=>{
             res.render('registrar');
         });
-
-        this.app.get("/goproveedor",(req,res)=>{
-
-            res.render('proveedor');
-        });
-
-        this.app.get("/gocategoria",(req,res)=>{
-            let id_cat='';
-            let nombre='';
-            let descripcion='';
-            
-            res.render('categorias',{id_cat:id_cat,nombre:nombre,descripcion:descripcion});
-        });
         
-        this.app.get("/gocliente",(req,res)=>{
-            let id_usu='';
-            let nombre='';
-            let direccion='';
-            let telefono='';
-            
-
-            res.render('cliente',{id_usu:id_usu,nombre:nombre,direccion:direccion,telefono:telefono});
-        });
-
         this.app.get("/registrar",(req,res)=>{
             let id_us=req.query.nrj;
             let nombre=req.query.nombre;
