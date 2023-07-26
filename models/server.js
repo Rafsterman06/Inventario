@@ -42,7 +42,7 @@ class Server{
                             concatenacion+="<tr><td>"+result[x].id_cliente+"</td><td>"+result[x].nombre+"</td><td>"+result[x].Direccion+"</td><td>"+result[x].telefono+"</td></tr>";
                         }
                         res.render("cliente",{dato:concatenacion});
-                        console.log(tablacliente);
+                        console.log(concatenacion);
                     });
                 }
             });
