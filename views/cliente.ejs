@@ -19,9 +19,6 @@
         <link rel="stylesheet" href="../sources/css/cliente.css">
     </head>
     <body>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-        <script src="https://cdn.datatables,net/1.12.1/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables,net/1.12.1/js/dataTables.bootstrap.min.js"></script>
         <div id="contenedor">
             <div id="contenedorcentrado">
                 <div id="login">
@@ -44,11 +41,11 @@
                                 <input type="text" name="telefono" id="telefono" placeholder="Telefono" required>
                             </div>
                             <div class="divbutton">
-                                <button type="button">Create</button>
-                                <button type="button">Read</button>
-                                <button type="button">Update</button>
-                                <button type="button">Delete</button>
-                                <button type="button">Buscar</button>
+                                <button type="button" id="create" onclick="create.createcategoria()">Create</button>
+                                <button type="button" id="read" onclick="read.readcategoria()">Read</button>
+                                <button type="button" id="update">Update</button>
+                                <button type="button" id="delete">Delete</button>
+                                <button type="button" id="buscar">Buscar</button>
                             </div>
                         </fieldset>
                     </form>
@@ -56,17 +53,25 @@
             </div>
             <div id="contenedortabla">
                 <table>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Direccion</th>
-                        <th>Telefono</th>
-                    </tr>
-                    <tbody id="tablacliente"></tbody>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Direccion</th>
+                            <th>Telefono</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablacliente">
+                        let dato=<%=dato%>;
+                    </tbody>
                     
                 </table>
             </div>
         </div>
         
+        <script>document.getElementById("#tablacliente").innerHTML=dato;</script>
+        <script type="text/javascript" src="./../models/read.js">
+            readcliente();
+        </script>
     </body>
 </html>

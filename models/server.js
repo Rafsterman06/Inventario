@@ -2,7 +2,9 @@ let express=require('express');
 let mysql=require('mysql');
 let Sha1=require('sha1');
 const Read = require('./read');
+const Conexion = require('./conexion');
 let read=new Read();
+let conexion=new Conexion();
 
 class Server{
     constructor(){
@@ -23,191 +25,56 @@ class Server{
     }
     routes(){
         this.app.get("/gocategoria",(req,res)=>{
-            let conn=mysql.createConnection({
-                user:this.dbuser,
-                password:this.dbpassword,
-                database:this.dbdatabase,
-                port:this.dbport,
-                host:this.dbhost
-
-            });
-            conn.connect(function (err){
-                if(err) throw err;
-                else{
-                    let sql="SELECT * FROM categorias;"
-                    conn.query(sql,function(err,result){
-                        if(result.length>0){
-                            res.render('categorias');
-                            read.readcategoria(result);
-                        }
-                        else{
-                            res.render('categorias');
-                        }
-                    });
-                }
-            });
+                res.render('categorias');
+                read.readcategoria();
             
         });
         this.app.get("/gocliente",(req,res)=>{
             //falta poner un query para imprimir al comienzo de cada vez que se abra esta ventana
-            let conn=mysql.createConnection({
-                user:this.dbuser,
-                password:this.dbpassword,
-                database:this.dbdatabase,
-                port:this.dbport,
-                host:this.dbhost
-
-            });
+            let conn=conexion.conexion();
             conn.connect(function (err){
                 if(err) throw err;
                 else{
-                    let sql="SELECT * FROM cliente;"
+                    let sql="SELECT * FROM cliente;";
                     conn.query(sql,function(err,result){
-                        if(result.length>0){
-                            res.render('cliente');
-                            //read.readcliente(result);
+                        let concatenacion="";
+                        for (let x in result){
+                            concatenacion+="<tr><td>"+result[x].id_cliente+"</td><td>"+result[x].nombre+"</td><td>"+result[x].Direccion+"</td><td>"+result[x].telefono+"</td></tr>";
                         }
-                        else{
-                            res.render('cliente');
-                        }
+                        res.render("cliente",{dato:concatenacion});
+                        let tablacliente=document.getElementById("#tablacliente");
+                        console.log(tablacliente);
                     });
                 }
             });
-            
         });
         this.app.get("/godetallesalida",(req,res)=>{
             //falta poner un query para imprimir al comienzo de cada vez que se abra esta ventana
-            let conn=mysql.createConnection({
-                user:this.dbuser,
-                password:this.dbpassword,
-                database:this.dbdatabase,
-                port:this.dbport,
-                host:this.dbhost
-
-            });
-            conn.connect(function (err){
-                if(err) throw err;
-                else{
-                    let sql="SELECT * FROM detallesalida;"
-                    conn.query(sql,function(err,result){
-                        if(result.length>0){
-                            res.render('detallesalida');
-                            //read.readdetallesalida(result);
-                        }
-                        else{
-                            res.render('detallesalida');
-                        }
-                    });
-                }
-            });
+                res.render('detallesalida');
+                read.readdetallesalida();
             
         });
         this.app.get("/goproducto",(req,res)=>{
             //falta poner un query para imprimir al comienzo de cada vez que se abra esta ventana
-            let conn=mysql.createConnection({
-                user:this.dbuser,
-                password:this.dbpassword,
-                database:this.dbdatabase,
-                port:this.dbport,
-                host:this.dbhost
-
-            });
-            conn.connect(function (err){
-                if(err) throw err;
-                else{
-                    let sql="SELECT * FROM producto;"
-                    conn.query(sql,function(err,result){
-                        if(result.length>0){
-                            res.render('producto');
-                            read.readproducto(result);
-                        }
-                        else{
-                            res.render('producto');
-                        }
-                    });
-                }
-            });
+                res.render('producto');
+                read.readproducto();
             
         });
         this.app.get("/goproveedor",(req,res)=>{
             //falta poner un query para imprimir al comienzo de cada vez que se abra esta ventana
-            let conn=mysql.createConnection({
-                user:this.dbuser,
-                password:this.dbpassword,
-                database:this.dbdatabase,
-                port:this.dbport,
-                host:this.dbhost
-
-            });
-            conn.connect(function (err){
-                if(err) throw err;
-                else{
-                    let sql="SELECT * FROM provedor;"
-                    conn.query(sql,function(err,result){
-                        if(result.length>0){
-                            res.render('proveedor');
-                            read.readproveedor(result);
-                        }
-                        else{
-                            res.render('proveedor');
-                        }
-                    });
-                }
-            });
-            
+                res.render('proveedor');
+                read.readproveedor();
         });
         this.app.get("/gosalida",(req,res)=>{
             //falta poner un query para imprimir al comienzo de cada vez que se abra esta ventana
-            let conn=mysql.createConnection({
-                user:this.dbuser,
-                password:this.dbpassword,
-                database:this.dbdatabase,
-                port:this.dbport,
-                host:this.dbhost
-
-            });
-            conn.connect(function (err){
-                if(err) throw err;
-                else{
-                    let sql="SELECT * FROM salida;"
-                    conn.query(sql,function(err,result){
-                        if(result.length>0){
-                            res.render('salida');
-                            read.readsalida(result);
-                        }
-                        else{
-                            res.render('salida');
-                        }
-                    });
-                }
-            });
+                res.render('salida');
+                read.readsalida();
             
         });
         this.app.get("/gousuario",(req,res)=>{
             //falta poner un query para imprimir al comienzo de cada vez que se abra esta ventana
-            let conn=mysql.createConnection({
-                user:this.dbuser,
-                password:this.dbpassword,
-                database:this.dbdatabase,
-                port:this.dbport,
-                host:this.dbhost
-
-            });
-            conn.connect(function (err){
-                if(err) throw err;
-                else{
-                    let sql="SELECT * FROM usuarios;"
-                    conn.query(sql,function(err,result){
-                        if(result.length>0){
-                            res.render('usuario');
-                            //read.readsalida(result);
-                        }
-                        else{
-                            res.render('usuario');
-                        }
-                    });
-                }
-            });
+                res.render('usuario');
+                read.readusuarios();
             
         });
         this.app.get("/goregistrar",(req,res)=>{
@@ -221,13 +88,7 @@ class Server{
             let rol=req.query.privilegio;
             let passSha1=Sha1(passw);
 
-            let conn=mysql.createConnection({
-                user:this.dbuser,
-                password:this.dbpassword,
-                database:this.dbdatabase,
-                port:this.dbport,
-                host:this.dbhost
-            });
+            let conn=conexion.conexion();
 
             if(rol=="Usuario"){
                 conn.connect(function(err){
@@ -264,13 +125,7 @@ class Server{
             let passw=req.query.passw;
             let passSha1=Sha1(passw);
             
-            let conn=mysql.createConnection({
-                user:this.dbuser,
-                password:this.dbpassword,
-                database:this.dbdatabase,
-                port:this.dbport,
-                host:this.dbhost
-            });
+            let conn=conexion.conexion();
             conn.connect(function(err){
                 if(err) throw err;
                 console.log('Conectado!!!');
