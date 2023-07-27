@@ -186,6 +186,13 @@ hr {
 /* ajustar a pantallas con ancho menor o igual a 775px; */
 /* ajustar a pantallas con ancho menor o igual a 775px; */
 
-
+table{
+    background-color: #379484;
+    align-items: center;
+    font-size: 2rem;
+}
+td{
+    padding: 4px;
+}
 
 

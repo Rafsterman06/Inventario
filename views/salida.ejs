@@ -57,7 +57,11 @@
                         <th>ID CLIENTE</th>
                         <th>FECHA</th>
                     </tr>
-                    <tbody id="tablasalida"></tbody>
+                    <tbody id="tablasalida">
+                        <% for( let index = 0; index < dato.length; index++ ) { %>
+                            <tr><td><%=dato[index].id_cliente%></td><td><%=dato[index].nombre%></td><td><%= dato[index].Direccion %></td><td><%=dato[index].telefono %></td></tr>
+                            <% } %>
+                    </tbody>
                     
                 </table>
             </div>

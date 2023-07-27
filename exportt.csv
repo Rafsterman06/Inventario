@@ -1,0 +1,7 @@
+(id_cliente,nombre,Direccion,telefono)
+INSERT INTO cliwente values(
+    (1,'laceiba1','enunlugar',546582),
+    (2,'laceiba2','enunlugar',546582),
+    (3,'laceiba3','enunlugar',546582),
+    (4,'laceiba4','enunlugar',546582),
+    (5,'laceiba5','enunlugar',546582));

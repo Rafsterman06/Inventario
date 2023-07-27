@@ -64,7 +64,11 @@
 					<th>CANTIDAD</th>
 					<th>VALOR</th>
 				</tr>
-				<tbody id="tablaproducto"></tbody>
+				<tbody id="tablaproducto">
+					<% for( let index = 0; index < dato.length; index++ ) { %>
+						<tr><td><%=dato[index].id_cliente%></td><td><%=dato[index].nombre%></td><td><%= dato[index].Direccion %></td><td><%=dato[index].telefono %></td></tr>
+						<% } %>
+				</tbody>
 				
 			</table>
 		</div>
