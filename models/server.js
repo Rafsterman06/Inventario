@@ -32,7 +32,7 @@ class Server{
                     let sql="SELECT * FROM categoria;";
                     conn.query(sql,function(err,result){
                         res.render("categorias",{dato:result});
-                        console.log(concatenacion);
+                        
                     });
                 }
             });
@@ -46,7 +46,7 @@ class Server{
                     let sql="SELECT * FROM cliente;";
                     conn.query(sql,function(err,result){
                         res.render("cliente",{dato:result});
-                        console.log(concatenacion);
+                        
                     });
                 }
             });
@@ -60,7 +60,7 @@ class Server{
                     let sql="SELECT * FROM detallesalida;";
                     conn.query(sql,function(err,result){
                         res.render("detallesalida",{dato:result});
-                        console.log(concatenacion);
+                        
                     });
                 }
             });
@@ -75,7 +75,7 @@ class Server{
                     let sql="SELECT * FROM producto;";
                     conn.query(sql,function(err,result){
                         res.render("producto",{dato:result});
-                        console.log(concatenacion);
+                        
                     });
                 }
             });
@@ -90,7 +90,7 @@ class Server{
                     let sql="SELECT * FROM provedor;";
                     conn.query(sql,function(err,result){
                         res.render("proveedor",{dato:result});
-                        console.log(concatenacion);
+                        
                     });
                 }
             });
@@ -104,7 +104,7 @@ class Server{
                     let sql="SELECT * FROM salida;";
                     conn.query(sql,function(err,result){
                         res.render("salida",{dato:result});
-                        console.log(concatenacion);
+                        
                     });
                 }
             });
@@ -119,7 +119,7 @@ class Server{
                     let sql="SELECT * FROM usuarios;";
                     conn.query(sql,function(err,result){
                         res.render("usuarios",{dato:result});
-                        console.log(concatenacion);
+                        
                     });
                 }
             });
