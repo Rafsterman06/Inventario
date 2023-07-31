@@ -54,6 +54,7 @@ class Server{
                         console.log("Archivo Registrado con exito");
                         sql="SELECT * FROM categorias;";
                         conn.query(sql,function(err,result){
+                            if(err) throw err;
                             res.render("categorias",{dato:result});
                         });
                     }
@@ -67,6 +68,7 @@ class Server{
                 else{
                     let sql="SELECT * FROM cliente;";
                     conn.query(sql,function(err,result){
+                        if(err) throw err;
                         res.render("cliente",{dato:result});
                     });
                 }
@@ -113,12 +115,14 @@ class Server{
             let cantidad=req.query.cantidad;
             let conn=conexion.conexion();
             conn.connect(function(err){
+                if(err) throw err;
                 let sql="INSERT INTO detallesalida (id_detallesalida,id_salida,id_product,fecha,cantidad) VALUES ("+id_detallesalida+","+id_salida+","+id_product+",'"+fecha+"',"+cantidad+");";
                 conn.query(sql,function(err){
                     if(err) throw err;
                 });
                 sql="SELECT * FROM detallesalida;";
                 conn.query(sql,function(err,result){
+                    if(err) throw err;
                     res.render("detallesalida",{dato:result});
                 });
             });
@@ -136,7 +140,7 @@ class Server{
                 }
             });
         });
-        app.get('/crudproducto', (req, res) => {
+        this.app.get('/crudproducto', (req, res) => {
             let id_product=req.query.id_product;
             let id_cat=req.query.id_cat;
             let id_prov=req.query.id_prov;
@@ -180,6 +184,7 @@ class Server{
             let telefono=req.query.telefono;
             let conn=conexion.conexion();
             conn.connect(function(err){
+                if(err) throw err;
                 let sql="INSERT INTO provedor (id_prov,nombre,direccion,telefono) VALUES ("+id_prov+",'"+nombre+"','"+direccion+"',"+telefono+");";
                 conn.query(sql,function(err){
                     if(err) throw err;
@@ -198,6 +203,7 @@ class Server{
                 else{
                     let sql="SELECT * FROM salida;";
                     conn.query(sql,function(err,result){
+                        if(err) throw err;
                         res.render("salida",{dato:result});
                     });
                 }
@@ -209,6 +215,7 @@ class Server{
             let fecha=req.query.fecha;
             let conn=conexion.conexion();
             conn.connect(function(err){
+                if(err) throw err;
                 let sql="INSERT INTO salida (id_salida,id_cliente,fecha) VALUES ("+id_salida+","+id_cliente+",'"+fecha+"');";
                 conn.query(sql,function(err){
                     if(err) throw err;
@@ -227,6 +234,7 @@ class Server{
                 else{
                     let sql="SELECT * FROM usuarios;";
                     conn.query(sql,function(err,result){
+                        if(err) throw err;
                         res.render("usuarios",{dato:result});
                     });
                 }
