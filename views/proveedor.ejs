@@ -1,13 +1,7 @@
-<!-- Define que el documento esta bajo el estandar de HTML 5 -->
 <!doctype html>
-
-<!-- Representa la raíz de un documento HTML o XHTML. Todos los demás elementos deben ser descendientes de este elemento. -->
 <html lang="es">
-    
     <head>
-        
         <meta charset="utf-8">
-        
         <title>La Ceiba</title>    
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Videojuegos & Desarrollo">
@@ -15,22 +9,13 @@
         <meta name="keywords" content="login,formulariode acceso html">
         <link rel="shortcut icon" href="/sources/img/icons8-oak-tree-16.png" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet"> 
-        <!-- Link hacia el archivo de estilos css -->
         <link rel="stylesheet" href="../sources/css/proveedor.css">
     </head>
     <body>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-        <script src="https://cdn.datatables,net/1.12.1/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables,net/1.12.1/js/dataTables.bootstrap.min.js"></script>
-        <script >
-            const Eventos=require("/models/eventos");
-            let eventos=new Eventos();
-            eventos.proveedor
-        </script>
         <div id="contenedor">
             <div id="contenedorcentrado">
 				<div id="login">
-					<form id="loginform" action="/login">
+					<form id="loginform" >
 						<fieldset>
 							<div class="divinput">
 								<label for="id_prov">ID</label>
@@ -49,11 +34,11 @@
                                 <input type="text" name="telefono" id="telefono" placeholder="Telefono" required>
                             </div>
                             <div class="divbutton">
-                                <button type="button" id="create">Create</button>
-                                <button type="button" id="read">Read</button>
-                                <button type="button" id="update">Update</button>
-                                <button type="button" id="delete">Delete</button>
-                                <button type="button" id="buscar">Buscar</button>
+                                <button type="button" id="create" onclick="">Create</button>
+                                <button type="button" id="read" onclick="">Read</button>
+                                <button type="button" id="update" onclick="">Update</button>
+                                <button type="button" id="delete" onclick="">Delete</button>
+                                <button type="button" id="buscar" onclick="">Buscar</button>
                             </div>
                         </fieldset>
                     </form>
@@ -68,13 +53,14 @@
                         <th>Telefono</th>
                     </tr>
                     <tbody id="tablaproveedor">
-                        <% for( let index = 0; index < dato.length; index++ ) { %>
-                            <tr><td><%=dato[index].id_cliente%></td><td><%=dato[index].nombre%></td><td><%= dato[index].Direccion %></td><td><%=dato[index].telefono %></td></tr>
+                        <% if (dato.length>0) { %>
+                            <% for( let index = 0; index < dato.length; index++ ) { %>
+                                <tr><td><%=dato[index].id_prov%></td><td><%=dato[index].nombre%></td><td><%= dato[index].Direccion %></td><td><%=dato[index].telefono %></td></tr>
                             <% } %>
+                        <% } %>
                     </tbody>
                 </table>
             </div>
         </div>
-        
     </body>
 </html>

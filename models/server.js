@@ -1,10 +1,9 @@
 let express=require('express');
-let mysql=require('mysql');
 let Sha1=require('sha1');
-const Read = require('./read');
 const Conexion = require('./conexion');
-let read=new Read();
+const { addListener } = require('nodemon');
 let conexion=new Conexion();
+
 
 class Server{
     constructor(){
@@ -29,16 +28,39 @@ class Server{
             conn.connect(function (err){
                 if(err) throw err;
                 else{
-                    let sql="SELECT * FROM categoria;";
+                    let sql="SELECT * FROM categorias;";
                     conn.query(sql,function(err,result){
                         res.render("categorias",{dato:result});
-                        
                     });
                 }
             });
         });
+        this.app.get("/crudcategoria", (req, res) => {
+            let id_cat=req.query.id_cat;
+            let nombre=req.query.nombre;
+            let descripcion=req.query.descripcion;
+            let conn=conexion.conexion();
+
+            jaddEventListener(onclick,function(err){
+                console.log("afdasfd");
+            },false);
+            conn.connect(function(err){
+                if(err) throw err;
+                console.log("conectado!!");
+                let sql="INSERT INTO categorias (id_cat,nombre,Descripcion) VALUES ("+id_cat+",'"+nombre+"','"+descripcion+"');";
+                conn.query(sql,function(err){
+                    if(err) throw err;
+                    else{
+                        console.log("Archivo Registrado con exito");
+                        sql="SELECT * FROM categorias;";
+                        conn.query(sql,function(err,result){
+                            res.render("categorias",{dato:result});
+                        });
+                    }
+                });
+            });
+        });
         this.app.get("/gocliente",(req,res)=>{
-            //falta poner un query para imprimir al comienzo de cada vez que se abra esta ventana
             let conn=conexion.conexion();
             conn.connect(function (err){
                 if(err) throw err;
@@ -46,13 +68,32 @@ class Server{
                     let sql="SELECT * FROM cliente;";
                     conn.query(sql,function(err,result){
                         res.render("cliente",{dato:result});
-                        
                     });
                 }
             });
         });
+        this.app.get('/crudcliente', (req, res) => {
+            let id_cliente=req.query.id_cliente;
+            let nombre=req.query.nombre;
+            let direccion=req.query.direccion;
+            let telefono=req.query.telefono;
+            let conn=conexion.conexion();
+            conn.connect(function(err){
+                if(err) throw err;
+                else{
+                    let sql="INSERT INTO cliente (id_cliente,nombre,direccion,telefono) VALUES ("+id_cliente+",'"+nombre+"','"+direccion+"',"+telefono+");";
+                    conn.query(sql,function(err){
+                        if(err) throw err;
+                    });
+                    sql="SELECT * FROM cliente;";
+                    conn.query(sql,function(err,result){
+                        res.render("cliente",{dato:result});
+                    });
+                }
+            });
+        });
+        
         this.app.get("/godetallesalida",(req,res)=>{
-            //falta poner un query para imprimir al comienzo de cada vez que se abra esta ventana
             let conn=conexion.conexion();
             conn.connect(function (err){
                 if(err) throw err;
@@ -60,11 +101,27 @@ class Server{
                     let sql="SELECT * FROM detallesalida;";
                     conn.query(sql,function(err,result){
                         res.render("detallesalida",{dato:result});
-                        
                     });
                 }
             });
-            
+        });
+        this.app.get('/cruddetallesalida', (req, res) => {
+            let id_detallesalida=req.query.id_detallesalida;
+            let id_salida=req.query.id_salida;
+            let id_product=req.query.id_product;
+            let fecha=req.query.fecha;
+            let cantidad=req.query.cantidad;
+            let conn=conexion.conexion();
+            conn.connect(function(err){
+                let sql="INSERT INTO detallesalida (id_detallesalida,id_salida,id_product,fecha,cantidad) VALUES ("+id_detallesalida+","+id_salida+","+id_product+",'"+fecha+"',"+cantidad+");";
+                conn.query(sql,function(err){
+                    if(err) throw err;
+                });
+                sql="SELECT * FROM detallesalida;";
+                conn.query(sql,function(err,result){
+                    res.render("detallesalida",{dato:result});
+                });
+            });
         });
         this.app.get("/goproducto",(req,res)=>{
             //falta poner un query para imprimir al comienzo de cada vez que se abra esta ventana
@@ -75,11 +132,32 @@ class Server{
                     let sql="SELECT * FROM producto;";
                     conn.query(sql,function(err,result){
                         res.render("producto",{dato:result});
-                        
                     });
                 }
             });
-            
+        });
+        app.get('/crudproducto', (req, res) => {
+            let id_product=req.query.id_product;
+            let id_cat=req.query.id_cat;
+            let id_prov=req.query.id_prov;
+            let nombre=req.query.nombre;
+            let cantidad=req.query.cantidad;
+            let valor=req.query.valor;
+            let conn=conexion.conexion();
+            conn.connect(function(err){
+                if(err) throw err;
+                else{
+                    let sql="INSERT INTO producto (id_product,id_cat,id_prov,nombre,cantidad,valor) VALUES ("+id_product+","+id_cat+","+id_prov+",'"+nombre+"',"+cantidad+","+valor+");";
+                    conn.query(sql,function(err){
+                        if(err) throw err;
+                    });
+                    sql="SELECT * FROM producto;";
+                    conn.query(sql,function(err,result){
+                        if(err) throw err;
+                        res.render("producto",{dato:result});
+                    });
+                }
+            });
         });
         this.app.get("/goproveedor",(req,res)=>{
             //falta poner un query para imprimir al comienzo de cada vez que se abra esta ventana
@@ -95,8 +173,25 @@ class Server{
                 }
             });
         });
+        this.app.get('/crudproveedor', (req, res) => {
+            let id_prov=req.query.id_prov;
+            let nombre=req.query.nombre;
+            let direccion=req.query.direccion;
+            let telefono=req.query.telefono;
+            let conn=conexion.conexion();
+            conn.connect(function(err){
+                let sql="INSERT INTO provedor (id_prov,nombre,direccion,telefono) VALUES ("+id_prov+",'"+nombre+"','"+direccion+"',"+telefono+");";
+                conn.query(sql,function(err){
+                    if(err) throw err;
+                });
+                sql="SELECT * FROM provedor;";
+                conn.query(sql,function(err,result){
+                    if(err) throw err;
+                    res.render("proveedor",{dato:result});
+                });
+            });
+        });
         this.app.get("/gosalida",(req,res)=>{
-            //falta poner un query para imprimir al comienzo de cada vez que se abra esta ventana
             let conn=conexion.conexion();
             conn.connect(function (err){
                 if(err) throw err;
@@ -104,14 +199,28 @@ class Server{
                     let sql="SELECT * FROM salida;";
                     conn.query(sql,function(err,result){
                         res.render("salida",{dato:result});
-                        
                     });
                 }
             });
-            
+        });
+        this.app.get('/crudsalida', (req, res) => {
+            let id_salida=req.query.id_salida;
+            let id_cliente=req.query.id_cliente;
+            let fecha=req.query.fecha;
+            let conn=conexion.conexion();
+            conn.connect(function(err){
+                let sql="INSERT INTO salida (id_salida,id_cliente,fecha) VALUES ("+id_salida+","+id_cliente+",'"+fecha+"');";
+                conn.query(sql,function(err){
+                    if(err) throw err;
+                });
+                sql="SELECT * FROM salida;";
+                conn.query(sql,function(err,result){
+                    if(err) throw err;
+                    res.render("salida",{dato:result});
+                });
+            });
         });
         this.app.get("/gousuario",(req,res)=>{
-            //falta poner un query para imprimir al comienzo de cada vez que se abra esta ventana
             let conn=conexion.conexion();
             conn.connect(function (err){
                 if(err) throw err;
@@ -119,16 +228,30 @@ class Server{
                     let sql="SELECT * FROM usuarios;";
                     conn.query(sql,function(err,result){
                         res.render("usuarios",{dato:result});
-                        
                     });
                 }
             });
             
         });
+        this.app.get('path', (req, res) => {
+            let conn=conexion.conexion();
+            conn.connect(function(err){
+                if(err) throw err;
+                let sql="";
+                conn.query(sql,function(err){
+                    if(err) throw err;
+                });
+                sql="SELECT * FROM usuarios;";
+                conn.query(sql,function(err,result){
+                    if(err) throw err;
+                    res.render("usuarios",{dato:result});
+                });
+            })
+        });
         this.app.get("/goregistrar",(req,res)=>{
             res.render('registrar');
         });
-        
+    
         this.app.get("/registrar",(req,res)=>{
             let id_us=req.query.nrj;
             let nombre=req.query.nombre;

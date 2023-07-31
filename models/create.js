@@ -5,9 +5,9 @@ class Create{
 
     }
     createcategoria(){
-        let id_cat=document.getElementById("#id_cat").value;
-        let nombre=document.getElementById("#nombre").value;
-        let descripcion=document.getElementById("#descripcion").value;
+        let id_cat=res.query.id_cat;
+        let nombre=res.query.nombre;
+        let descripcion=res.query.descripcion;
         let conn=conexion.conexion();
         conn.connect(function(err){
                     if(err) throw err;
@@ -17,7 +17,6 @@ class Create{
                         if(err) throw err;
                         else{
                             console.log("Archivo Registrado con exito");
-                            alert('Archivo Registrado con exito');
                         }
                     });
                 });
