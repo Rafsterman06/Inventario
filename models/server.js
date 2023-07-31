@@ -241,7 +241,7 @@ class Server{
             });
             
         });
-        this.app.get('path', (req, res) => {
+        this.app.get('/crudusuario', (req, res) => {
             let conn=conexion.conexion();
             conn.connect(function(err){
                 if(err) throw err;
