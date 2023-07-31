@@ -58,7 +58,7 @@
                         <th>CANTIDAD</th>
                     </tr>
                     <tbody id="tabladetallesalida">
-                        <% if (dato.length>0) { %>
+                        <% if (dato.length) { %>
                             <% for( let index = 0; index < dato.length; index++ ) { %>
                                 <tr><td><%=dato[index].id_detallesalida%></td><td><%=dato[index].id_salida%></td><td><%= dato[index].id_product %></td><td><%=dato[index].fecha%></td><td><%=dato[index].cantidad%></td></tr>
                             <% } %>

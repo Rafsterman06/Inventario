@@ -102,6 +102,7 @@ class Server{
                 else{
                     let sql="SELECT * FROM detallesalida;";
                     conn.query(sql,function(err,result){
+                        if(err) throw err;
                         res.render("detallesalida",{dato:result});
                     });
                 }
