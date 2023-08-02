@@ -41,9 +41,6 @@ class Server{
             let descripcion=req.query.descripcion;
             let conn=conexion.conexion();
 
-            jaddEventListener(onclick,function(err){
-                console.log("afdasfd");
-            },false);
             conn.connect(function(err){
                 if(err) throw err;
                 console.log("conectado!!");
@@ -52,12 +49,12 @@ class Server{
                     if(err) throw err;
                     else{
                         console.log("Archivo Registrado con exito");
-                        sql="SELECT * FROM categorias;";
-                        conn.query(sql,function(err,result){
-                            if(err) throw err;
-                            res.render("categorias",{dato:result});
-                        });
                     }
+                });
+                sql="SELECT * FROM categorias;";
+                conn.query(sql,function(err,result){
+                    if(err) throw err;
+                    res.render("categorias",{dato:result});
                 });
             });
         });
@@ -236,17 +233,23 @@ class Server{
                     let sql="SELECT * FROM usuarios;";
                     conn.query(sql,function(err,result){
                         if(err) throw err;
-                        res.render("usuarios",{dato:result});
+                        res.render("usuario",{dato:result});
                     });
                 }
             });
             
         });
         this.app.get('/crudusuario', (req, res) => {
+            let id_us=req.query.id_us;
+            let usuario=req.query.usuario;
+            let passwordd=req.query.passwordd;
+            passwordd=Sha1(passwordd);
+            let rol=req.query.rol;
+
             let conn=conexion.conexion();
             conn.connect(function(err){
                 if(err) throw err;
-                let sql="";
+                let sql="INSERT INTO usuarios (id_us,usuario,passwordd,rol) VALUES ("+id_us+",'"+usuario+"','"+passwordd+"','"+rol+"');";
                 conn.query(sql,function(err){
                     if(err) throw err;
                 });

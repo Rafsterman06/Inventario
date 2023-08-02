@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>La Ceiba</title>    
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Videojuegos & Desarrollo">
+        <meta name="description" content="Ejemplo de formulario de acceso basado en HTML5 y CSS">
+        <meta name="keywords" content="login,formulariode acceso html">
+        <link rel="shortcut icon" href="/sources/img/icons8-oak-tree-16.png" type="image/x-icon">
+        <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet"> 
+        <link rel="stylesheet" href="../sources/css/cliente.css">
+    </head>
+    <body>
+        <div id="contenedor">
+            <div id="contenedorcentrado">
+                <div id="login">
+                    <form id="loginform">
+                        <fieldset>
+                            <div class="divinput">
+                                <label for="id_us">ID USUARIO</label>
+                                <input type="text" name="id_us" id="id_us" placeholder="ID USUARIO" required>
+                            </div>
+                            <div class="divinput">
+                                <label for="usuario">USUARIO</label>
+                                <input type="text" name="usuario" id="usuario" placeholder="USUARIO" required>
+                            </div>
+                            <div class="divinput">
+                                <label for="passwordd">PASSWORD</label>
+                                <input type="text" name="passwordd" id="passwordd" placeholder="PASSWORD" required>
+                            </div>
+                            <div class="divinput">
+                                <label for="rol">ROL</label>
+                                <input type="text" name="rol" id="rol" placeholder="ROL" required>
+                            </div>
+                            <div class="divbutton">
+                                <button type="button" id="create" onclick="">Create</button>
+                                <button type="button" id="read" onclick="">Read</button>
+                                <button type="button" id="update" onclick="">Update</button>
+                                <button type="button" id="delete" onclick="">Delete</button>
+                                <button type="button" id="buscar" onclick="">Buscar</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            <div id="contenedortabla">
+                <table>
+                    <tr>
+                        <th>ID SALIDA</th>
+                        <th>ID CLIENTE</th>
+                        <th>FECHA</th>
+                    </tr>
+                    <tbody id="tablasalida">
+                        <% if (dato.length>0) { %>
+                            <% for( let index = 0; index < dato.length; index++ ) { %>
+                                <tr><td><%=dato[index].id_salida%></td><td><%=dato[index].cliente%></td><td><%= dato[index].fecha %></td></tr>
+                            <% } %>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
