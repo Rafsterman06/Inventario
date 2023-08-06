@@ -68,3 +68,10 @@ describe usuarios;
 select * from usuarios;
 
 INSERT INTO cliente (id_cliente,nombre,Direccion,telefono) value(1,'laceiba1','enunlugar','546582');
+INSERT INTO cliente (id_cliente,nombre,Direccion,telefono) value(2,'laceiba2','enunlugar','546582');
+INSERT INTO cliente (id_cliente,nombre,Direccion,telefono) value(3,'laceiba3','enunlugar','546582');
+INSERT INTO cliente (id_cliente,nombre,Direccion,telefono) value(4,'laceiba4','enunlugar','546582');
+INSERT INTO cliente (id_cliente,nombre,Direccion,telefono) value(5,'laceiba5','enunlugar','546582');
+
+
+UPDATE cliente SET 

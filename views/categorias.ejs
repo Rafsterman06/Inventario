@@ -13,37 +13,8 @@
     </head>
     <body>
 		<div id="contenedor">
-			<div id="contenedorcentrado">
-				<div id="login">
-					<form id="loginform" action="/crudcategoria">
-						<fieldset>
-							<div class="divinput">
-								<label for="id_cat">ID</label>
-								<input type="text" name="id_cat" id="id_cat" placeholder="ID" required>
-                            </div>
-                            <div class="divinput">
-								<label for="nombre">Nombre</label>
-                                <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
-                            </div>
-                            <div class="divinput">
-								<label for="descripcion">Descripcion</label>
-								<input type="text" name="descripcion" id="descripcion" placeholder="Descripcion" required>
-                            </div>
-                            <div class="divbutton">
-                                <button id="create" onclick="createe()">Create</button>
-                                <button id="read" onclick=" ">Read</button>
-                                <button id="update" onclick="">Update</button>
-                                <button id="delete" onclick="">Delete</button>
-                                <button id="buscar" onclick="">Buscar</button>
-                                <script>
-                                    
-                                </script>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
-            </div>
             <div id="contenedortabla">
+                <a href="/goformcreatecategoria"><img src="./sources/img/plus.png" alt="goformcreatecategoria"></a>
                 <table>
                     <tr>
                         <th>ID</th>
@@ -53,7 +24,7 @@
                     <tbody id="tablacategoria">
                         <% if (dato.length>0) { %>
                             <% for( let index = 0; index < dato.length; index++ ) { %>
-                                <tr><td><%=dato[index].id_cat%></td><td><%=dato[index].nombre%></td><td><%= dato[index].Descripcion %></td></tr>
+                                <tr><td><%=dato[index].id_cat%></td><td><%=dato[index].nombre%></td><td><%= dato[index].Descripcion %></td><td><a href="/goformupdatecategoria/<%=dato[index].id_cat%>"><img src="./sources/img/edit.png" alt="updatecategoria"></a></td><td><a href="/deletecategoria/<%=dato[index].id_cat%>"><img src="./sources/img/cross.png" alt="deletecategoria"></a></td></tr>
                             <% } %>
                         <% } %>
                     </tbody>

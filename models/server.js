@@ -1,7 +1,6 @@
 let express=require('express');
 let Sha1=require('sha1');
 const Conexion = require('./conexion');
-const { addListener } = require('nodemon');
 let conexion=new Conexion();
 
 
@@ -35,7 +34,7 @@ class Server{
                 }
             });
         });
-        this.app.get("/crudcategoria", (req, res) => {
+        this.app.get("/createcategoria", (req, res) => {
             let id_cat=req.query.id_cat;
             let nombre=req.query.nombre;
             let descripcion=req.query.descripcion;
@@ -48,15 +47,59 @@ class Server{
                 conn.query(sql,function(err){
                     if(err) throw err;
                     else{
-                        console.log("Archivo Registrado con exito");
+                         res.redirect('/gocategoria');
                     }
                 });
-                sql="SELECT * FROM categorias;";
-                conn.query(sql,function(err,result){
-                    if(err) throw err;
-                    res.render("categorias",{dato:result});
-                });
             });
+        });
+        this.app.get('/goformcreatecategoria', (req, res) => {
+            res.render('formcreatecategoria');
+        });
+        this.app.get('/goformupdatecategoria/:id', (req, res) => {
+            let id_cat=req.params.id;
+            let conn=conexion.conexion();
+            conn.connect(function(err){
+                if(err) throw err;
+                else{
+                    let sql="SELECT * FROM categorias WHERE id_cat="+id_cat+";"
+                    conn.query(sql,function(err,result){
+                        if(err) throw err;
+                        res.render('formupdatecategoria',{dato:result});
+                    });
+                }
+            });
+        });
+        this.app.get('/updatecategoria/:id', (req, res) => {
+            let dato=req.params.id;
+            let nombre=req.query.nombre;
+            let descripcion=req.query.descripcion;
+            let conn=conexion.conexion();
+            conn.connect(function(err){
+                if(err) throw err;
+                else{
+                    let sql="UPDATE categorias set nombre='"+nombre+"', Descripcion='"+descripcion+"' WHERE id_cat="+dato+";";
+                    conn.query(sql,function(err){
+                        if(err) throw err;
+                        else{
+                             res.redirect('/gocategoria');
+                        }
+                    });
+                }
+            });
+        });
+        this.app.get('/deletecategoria/:id', (req, res) => {
+            let id_cat=req.params.id;
+            let conn=conexion.conexion();
+            conn.connect(function(err){
+                if(err) throw err;
+                else{
+                    let sql="DELETE FROM categorias WHERE id_cat="+id_cat+";";
+                    conn.query(sql,function(err){
+                        if(err) throw err;
+                         res.redirect('/gocategoria');
+                    });
+                }
+            }); 
         });
         this.app.get("/gocliente",(req,res)=>{
             let conn=conexion.conexion();
@@ -71,7 +114,10 @@ class Server{
                 }
             });
         });
-        this.app.get('/crudcliente', (req, res) => {
+        this.app.get('/goformcreatecliente', (req, res) => {
+            res.render('formcreatecliente');
+        });
+        this.app.get('/createcliente', (req, res) => {
             let id_cliente=req.query.id_cliente;
             let nombre=req.query.nombre;
             let direccion=req.query.direccion;
@@ -83,15 +129,39 @@ class Server{
                     let sql="INSERT INTO cliente (id_cliente,nombre,direccion,telefono) VALUES ("+id_cliente+",'"+nombre+"','"+direccion+"',"+telefono+");";
                     conn.query(sql,function(err){
                         if(err) throw err;
-                    });
-                    sql="SELECT * FROM cliente;";
-                    conn.query(sql,function(err,result){
-                        res.render("cliente",{dato:result});
+                         res.redirect('/gocliente');
                     });
                 }
             });
         });
-        
+        this.app.get('/goformupdatecliente/:id', (req, res) => {
+            let id_cliente=req.params.id;
+            let conn=conexion.conexion();
+            conn.connect(function(err){
+                if(err) throw err;
+                else{
+                    let sql="SELECT * FROM cliente WHERE id_cliente="+id_cliente+";"
+                    conn.query(sql,function(err,result){
+                        if(err) throw err;
+                        res.render('formupdatecliente');
+                    });
+                }
+            });
+        });
+        this.app.get('/deletecliente/:id', (req, res) => {
+            let id_cliente=req.params.id;
+            let conn=conexion.conexion();
+            conn.connect(function(err){
+                if(err) throw err;
+                else{
+                    let sql="DELETE FROM cliente WHERE id_cliente="+id_cliente+";";
+                    conn.query(sql,function(err){
+                        if(err) throw err;
+                         res.redirect('/gocliente');
+                    });
+                }
+            }); 
+        });
         this.app.get("/godetallesalida",(req,res)=>{
             let conn=conexion.conexion();
             conn.connect(function (err){
@@ -105,7 +175,7 @@ class Server{
                 }
             });
         });
-        this.app.get('/cruddetallesalida', (req, res) => {
+        this.app.get('/createdetallesalida', (req, res) => {
             let id_detallesalida=req.query.id_detallesalida;
             let id_salida=req.query.id_salida;
             let id_product=req.query.id_product;
@@ -117,16 +187,14 @@ class Server{
                 let sql="INSERT INTO detallesalida (id_detallesalida,id_salida,id_product,fecha,cantidad) VALUES ("+id_detallesalida+","+id_salida+","+id_product+",'"+fecha+"',"+cantidad+");";
                 conn.query(sql,function(err){
                     if(err) throw err;
-                });
-                sql="SELECT * FROM detallesalida;";
-                conn.query(sql,function(err,result){
-                    if(err) throw err;
-                    res.render("detallesalida",{dato:result});
+                     res.redirect('/godetallesalida');
                 });
             });
         });
+        this.app.get('/goformcreatedetallesalida', (req, res) => {
+            res.render('createdetallesalida');
+        });
         this.app.get("/goproducto",(req,res)=>{
-            //falta poner un query para imprimir al comienzo de cada vez que se abra esta ventana
             let conn=conexion.conexion();
             conn.connect(function (err){
                 if(err) throw err;
@@ -138,7 +206,7 @@ class Server{
                 }
             });
         });
-        this.app.get('/crudproducto', (req, res) => {
+        this.app.get('/createproducto', (req, res) => {
             let id_product=req.query.id_product;
             let id_cat=req.query.id_cat;
             let id_prov=req.query.id_prov;
@@ -162,7 +230,6 @@ class Server{
             });
         });
         this.app.get("/goproveedor",(req,res)=>{
-            //falta poner un query para imprimir al comienzo de cada vez que se abra esta ventana
             let conn=conexion.conexion();
             conn.connect(function (err){
                 if(err) throw err;
@@ -175,7 +242,7 @@ class Server{
                 }
             });
         });
-        this.app.get('/crudproveedor', (req, res) => {
+        this.app.get('/createproveedor', (req, res) => {
             let id_prov=req.query.id_prov;
             let nombre=req.query.nombre;
             let direccion=req.query.direccion;
@@ -207,7 +274,7 @@ class Server{
                 }
             });
         });
-        this.app.get('/crudsalida', (req, res) => {
+        this.app.get('/createsalida', (req, res) => {
             let id_salida=req.query.id_salida;
             let id_cliente=req.query.id_cliente;
             let fecha=req.query.fecha;
@@ -239,7 +306,7 @@ class Server{
             });
             
         });
-        this.app.get('/crudusuario', (req, res) => {
+        this.app.get('/createusuario', (req, res) => {
             let id_us=req.query.id_us;
             let usuario=req.query.usuario;
             let passwordd=req.query.passwordd;

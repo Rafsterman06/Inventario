@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>La Ceiba</title>    
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Videojuegos & Desarrollo">
+        <meta name="description" content="Ejemplo de formulario de acceso basado en HTML5 y CSS">
+        <meta name="keywords" content="login,formulariode acceso html">
+        <link rel="shortcut icon" href="/sources/img/icons8-oak-tree-16.png" type="image/x-icon">
+        <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet"> 
+        <link rel="stylesheet" href="../sources/css/categorias.css">
+    </head>
+    <body>
+		<div id="contenedor">
+			<div id="contenedorcentrado">
+				<div id="login">
+					<form id="loginform" action="/updatecategoria/<%=dato[0].id_cat%>">
+						<fieldset>
+                            <div class="divinput">
+								<label for="nombre">Nombre</label>
+                                <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
+                            </div>
+                            <div class="divinput">
+								<label for="descripcion">Descripcion</label>
+								<input type="text" name="descripcion" id="descripcion" placeholder="Descripcion" required>
+                            </div>
+                            <div class="divbutton">
+                                <button id="create" type="submit">Agregar</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

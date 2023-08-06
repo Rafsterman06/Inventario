@@ -21,37 +21,9 @@
     <body>
         <div id="contenedor">
             <div id="contenedorcentrado">
-                <div id="login">
-                    <form id="loginform" action="/crudcliente">
-                        <fieldset>
-                            <div class="divinput">
-                                <label for="id_cliente">ID</label>
-                                <input type="text" name="id_cliente" id="id_cliente" placeholder="ID" required>
-                            </div>
-                            <div class="divinput">
-                                <label for="nombre">Nombre</label>
-                                <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
-                            </div>
-                            <div class="divinput">
-                                <label for="direccion">Direccion</label>
-                                <input type="text" name="direccion" id="direccion" placeholder="Direccion" required>
-                            </div>
-                            <div class="divinput">
-                                <label for="telefono">Telefono</label>
-                                <input type="text" name="telefono" id="telefono" placeholder="Telefono" required>
-                            </div>
-                            <div class="divbutton">
-                                <button type="button" id="create" onclick="">Create</button>
-                                <button type="button" id="read" onclick="">Read</button>
-                                <button type="button" id="update" onclick="">Update</button>
-                                <button type="button" id="delete" onclick="">Delete</button>
-                                <button type="button" id="buscar" onclick="">Buscar</button>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
             </div>
             <div id="contenedortabla">
+                <a href="/goformcreatecliente"><img src="./sources/img/plus.png" alt="createcliente"></a>
                 <table>
                     <thead>
                         <tr>
@@ -64,7 +36,7 @@
                     <tbody id="tablacliente">
                         <% if (dato.length) { %>
                             <% for( let index = 0; index < dato.length; index++ ) { %>
-                            <tr><td><%=dato[index].id_cliente%></td><td><%=dato[index].nombre%></td><td><%= dato[index].Direccion %></td><td><%=dato[index].telefono %></td></tr>
+                            <tr><td><%=dato[index].id_cliente%></td><td><%=dato[index].nombre%></td><td><%= dato[index].Direccion %></td><td><%=dato[index].telefono %></td><td><a href="#"><img src="./sources/img/edit.png" alt="updatecliente"></a></td><td><a href="/deletecliente/<%=dato[index].id_cliente%>"><img src="./sources/img/cross.png" alt="deletecliente"></a></td></tr>
                             <% } %>
                         <% } %>
                     </tbody>
