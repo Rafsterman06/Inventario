@@ -36,7 +36,7 @@
                     <tbody id="tablacliente">
                         <% if (dato.length) { %>
                             <% for( let index = 0; index < dato.length; index++ ) { %>
-                            <tr><td><%=dato[index].id_cliente%></td><td><%=dato[index].nombre%></td><td><%= dato[index].Direccion %></td><td><%=dato[index].telefono %></td><td><a href="#"><img src="./sources/img/edit.png" alt="updatecliente"></a></td><td><a href="/deletecliente/<%=dato[index].id_cliente%>"><img src="./sources/img/cross.png" alt="deletecliente"></a></td></tr>
+                            <tr><td><%=dato[index].id_cliente%></td><td><%=dato[index].nombre%></td><td><%= dato[index].Direccion %></td><td><%=dato[index].telefono %></td><td><a href="/goformupdatecliente/<%=dato[index].id_cliente%>"><img src="./sources/img/edit.png" alt="updatecliente"></a></td><td><a href="/deletecliente/<%=dato[index].id_cliente%>"><img src="./sources/img/cross.png" alt="deletecliente"></a></td></tr>
                             <% } %>
                         <% } %>
                     </tbody>

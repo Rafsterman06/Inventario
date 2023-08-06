@@ -1,6 +1,7 @@
 let express=require('express');
 let Sha1=require('sha1');
 const Conexion = require('./conexion');
+const { render } = require('ejs');
 let conexion=new Conexion();
 
 
@@ -143,7 +144,26 @@ class Server{
                     let sql="SELECT * FROM cliente WHERE id_cliente="+id_cliente+";"
                     conn.query(sql,function(err,result){
                         if(err) throw err;
-                        res.render('formupdatecliente');
+                        res.render('formupdatecliente',{dato:result});
+                    });
+                }
+            });
+        });
+        this.app.get('/updatecliente/:id', (req, res) => {
+            let id_cliente=req.params.id;
+            let nombre=req.query.nombre;
+            let direccion=req.query.direccion;
+            let telefono=req.query.telefono;
+            let conn=conexion.conexion();
+            conn.connect(function(err){
+                if(err) throw err;
+                else{
+                    let sql="UPDATE cliente SET nombre='"+nombre+"', Direccion='"+direccion+"', telefono="+telefono+" WHERE id_cliente="+id_cliente+";";
+                    conn.query(sql,function(err){
+                        if(err) throw err;
+                        else{
+                            res.redirect('/gocliente');
+                        }
                     });
                 }
             });
@@ -175,6 +195,9 @@ class Server{
                 }
             });
         });
+        this.app.get('/goformcreatedetallesalida', (req, res) => {
+            res.render('formcreatedetallesalida');
+        });
         this.app.get('/createdetallesalida', (req, res) => {
             let id_detallesalida=req.query.id_detallesalida;
             let id_salida=req.query.id_salida;
@@ -190,6 +213,13 @@ class Server{
                      res.redirect('/godetallesalida');
                 });
             });
+        });
+        this.app.get('/goformupdatedetallesalida/:id', (req, res) => {
+            res.render("formupdatedetallesalida");
+        });
+        this.app.get('/updatedetallesalida/:id', (req, res) => {
+            let id_detallesalida=req.params.id;
+            
         });
         this.app.get('/goformcreatedetallesalida', (req, res) => {
             res.render('createdetallesalida');
