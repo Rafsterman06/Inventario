@@ -13,37 +13,7 @@
     </head>
     <body>
         <div id="contenedor">
-            <div id="contenedorcentrado">
-				<div id="login">
-					<form id="loginform" >
-						<fieldset>
-							<div class="divinput">
-								<label for="id_prov">ID</label>
-                                <input type="text" name="id_prov" id="id_prov" placeholder="ID" required>
-                            </div>
-                            <div class="divinput">
-								<label for="nombre">Nombre</label>
-                                <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
-                            </div>
-                            <div class="divinput">
-								<label for="direccion">Direccion</label>
-                                <input type="text" name="direccion" id="direccion" placeholder="Direccion" required>
-                            </div>
-                            <div class="divinput">
-                                <label for="telefono">Telefono</label>
-                                <input type="text" name="telefono" id="telefono" placeholder="Telefono" required>
-                            </div>
-                            <div class="divbutton">
-                                <button type="button" id="create" onclick="">Create</button>
-                                <button type="button" id="read" onclick="">Read</button>
-                                <button type="button" id="update" onclick="">Update</button>
-                                <button type="button" id="delete" onclick="">Delete</button>
-                                <button type="button" id="buscar" onclick="">Buscar</button>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
-            </div>
+            <a href="/goformcreateproveedor"><img src="./sources/img/plus.png" alt="createproveedor"></a>
             <div id="contenedortabla">
                 <table>
                     <tr>
@@ -55,7 +25,7 @@
                     <tbody id="tablaproveedor">
                         <% if (dato.length>0) { %>
                             <% for( let index = 0; index < dato.length; index++ ) { %>
-                                <tr><td><%=dato[index].id_prov%></td><td><%=dato[index].nombre%></td><td><%= dato[index].Direccion %></td><td><%=dato[index].telefono %></td></tr>
+                                <tr><td><%=dato[index].id_prov%></td><td><%=dato[index].nombre%></td><td><%= dato[index].Direccion %></td><td><%=dato[index].telefono %></td><td><a href="/goformupdateproveedor/<%=dato[index].id_prov%>"><img src="./sources/img/edit.png" alt="updateproveedor"></a></td><td><a href="/deleteproveedor/<%=dato[index].id_prov%>"><img src="./sources/img/cross.png" alt="deletecliente"></a></td></tr>
                             <% } %>
                         <% } %>
                     </tbody>

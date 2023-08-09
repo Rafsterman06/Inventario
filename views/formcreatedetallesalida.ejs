@@ -1,13 +1,7 @@
-<!-- Define que el documento esta bajo el estandar de HTML 5 -->
 <!doctype html>
-
-<!-- Representa la raíz de un documento HTML o XHTML. Todos los demás elementos deben ser descendientes de este elemento. -->
 <html lang="es">
-    
     <head>
-        
         <meta charset="utf-8">
-        
         <title>La Ceiba</title>    
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Videojuegos & Desarrollo">
@@ -15,29 +9,36 @@
         <meta name="keywords" content="login,formulariode acceso html">
         <link rel="shortcut icon" href="/sources/img/icons8-oak-tree-16.png" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet"> 
-        <!-- Link hacia el archivo de estilos css -->
         <link rel="stylesheet" href="../sources/css/cliente.css">
     </head>
     <body>
         <div id="contenedor">
             <div id="contenedorcentrado">
                 <div id="login">
-                    <form id="loginform" action="/updatecliente/<%=dato%>">
+                    <form id="loginform"  action="/createdetallesalida">
                         <fieldset>
                             <div class="divinput">
-                                <label for="nombre">Nombre</label>
-                                <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
+                                <label for="id_detallesalida">ID DETALLE SALIDA</label>
+                                <input type="text" name="id_detallesalida" id="id_detallesalida" placeholder="ID" required>
                             </div>
                             <div class="divinput">
-                                <label for="direccion">Direccion</label>
-                                <input type="text" name="direccion" id="direccion" placeholder="Direccion" required>
+                                <label for="id_salida">ID SALIDA</label>
+                                <input type="text" name="id_salida" id="id_salida" placeholder="ID SALIDA" required>
                             </div>
                             <div class="divinput">
-                                <label for="telefono">Telefono</label>
-                                <input type="text" name="telefono" id="telefono" placeholder="Telefono" required>
+                                <label for="id_product">ID PRODUCTO</label>
+                                <input type="text" name="id_product" id="id_product" placeholder="Direccion" required>
+                            </div>
+                            <div class="divinput">
+                                <label for="fecha">FECHA</label>
+                                <input type="text" name="fecha" id="fecha" placeholder="FECHA" required>
+                            </div>
+                            <div class="divinput">
+                                <label for="cantidad">CANTIDAD</label>
+                                <input type="text" name="cantidad" id="cantidad" placeholder="CANTIDAD" required>
                             </div>
                             <div class="divbutton">
-                                <button type="submit" id="create" >Actualizar</button>
+                                <button type="submit" id="create" >Agregar</button>
                             </div>
                         </fieldset>
                     </form>
