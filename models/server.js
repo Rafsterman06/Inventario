@@ -2,6 +2,8 @@ let express=require('express');
 let Sha1=require('sha1');
 const Conexion = require('./conexion');
 let conexion=new Conexion();
+let session=require('express-session');
+let cookieParser=require('cookie-parser');
 
 class Server{
     constructor(){
@@ -25,11 +27,23 @@ class Server{
         
         this.dburl=process.env.MYSQL_URL;
     }
+
     middlewares(){
         this.app.use(express.static('public'));
 
         this.app.set('view engine', 'ejs');
+
+        //para las cookies
+        this.app.use(cookieParser());
+
+        //para sesiones de usuarios
+        this.app.use(session({
+            secret: "amar",
+            saveUninitialized: true,
+            resave: true
+        }));
     }
+
     routes(){
         this.app.get("/gocategoria",(req,res)=>{
             let conn=conexion.conexion();
@@ -522,6 +536,30 @@ class Server{
             });
         });
 
+        this.app.get('/goformupdateusuario/:id', (req, res) => {
+            res.render('formupdateusuario',{dato:req.params.id});
+        });
+
+        this.app.get('/updateusuario/:id', (req, res) => {
+            let id_us=req.params.id;
+            let usuario=req.query.usuario
+            let passwordd=req.query.passwordd
+            let rol=req.query.rol
+            let conn=conexion.conexion();
+
+            conn.connect(function(err){
+                if(err) throw err;
+                else{
+                    let sql="UPDATE";
+                    conn.query(sql,function(err){
+                        if(err) throw err;
+                        else{
+                             res.redirect('/gousuario');
+                        }
+                    });
+                }
+            })
+        });
         this.app.get("/goregistrar",(req,res)=>{
             res.render('registrar');
         });
