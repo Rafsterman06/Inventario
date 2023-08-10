@@ -1,49 +1,33 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>La Ceiba</title>
-	<link rel="stylesheet" href="/sources/css/estilos.css">
-	<link rel="shortcut icon" href="sources/img/icons8-oak-tree-16.png" type="image/x-icon">
-	
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Ceiba</title>
+    <link rel="shortcut icon" href="/sources/img/icons8-oak-tree-16.png" type="image/x-icon">
+    <link rel="stylesheet" href="./sources/css/astyle.css">
 </head>
 <body>
-	<header class="header">
-		<div class="container">
-			<div class="logo">
-				<h1>La Ceiba</h1>
-			</div>
-			<nav class="menu">
-				<a href="paginas/inicio_de_sesion.html">Login</a>
-				<a href="/paginas/nosotros.html">Nosotros</a>
-				<a target="_blank" href="https://www.facebook.com/profile.php?id=100066171731818&mibextid=LQQJ4d">Faceboock</a>
-				<a href="#">Contacto</a>
-			</nav>
-		</div>
-	</header>
-	<div class="capa"></div>
-<!--	--------------->
-
-
-
-<!--
-
-	<div class="ImagenesProducto" style="align-items: center;">
-		<section>
-			<article>
-				<img src="" alt="Cloro">
-			</article>
-			<article>
-				<img src="" alt="Jabon">
-			</article>
-			<article>
-				<img src="" alt="Escoba">
-			</article>
-			<article>
-				<img src="" alt="">
-			</article>
-		</section>
-	</div>
--->
+    <div class="login-box">
+        <img class ="avatar" src="./sources/img/logo.png" alt ="logo de la ceiba">
+    </div>
+    <div class="box">
+        <form action="/login">
+            <h2>Bienvenido
+            </h2>
+            <div class="inputBox">
+            <input type="text" name="usuar" required>
+            <span>usuario</span>
+            <i></i>
+        </div>
+        <div class="inputBox">
+            <input type="password" name="passw" required>
+            <span>contraseña</span>
+            <i></i>
+        </div>
+        <input type="submit" value="Entrar">
+     </form>
+    </div>
 </body>
 </html>

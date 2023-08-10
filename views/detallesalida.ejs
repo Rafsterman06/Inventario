@@ -14,7 +14,7 @@
     <body>
         <div id="contenedor">
             <div id="contenedortabla">
-                <a href="/goformcreatedetallesalida"><img src="./sources/img/plus.png" alt="createcliente"></a>
+                
                 <table>
                     <tr>
                         <th>ID DETALLE SALIDA</th>
@@ -22,11 +22,12 @@
                         <th>ID PRODUCTO</th>
                         <th>FECHA</th>
                         <th>CANTIDAD</th>
+                        <th><a href="/goformcreatedetallesalida"><img src="./sources/img/circle_plus_icon_255898.png" alt="createcliente"></a></th>
                     </tr>
                     <tbody id="tabladetallesalida">
                         <% if (dato.length) { %>
                             <% for( let index = 0; index < dato.length; index++ ) { %>
-                                <tr><td><%=dato[index].id_detallesalida%></td><td><%=dato[index].id_salida%></td><td><%= dato[index].id_product %></td><td><%=dato[index].fecha%></td><td><%=dato[index].cantidad%></td><td><a href="/goformupdatedetallesalida/<%=dato[index].id_detallesalida%>"><img src="./sources/img/edit.png" alt="update"></a></td><td><a href="/deletedetallesalida/<%=dato[index].id_detallesalida%>"><img src="./sources/img/cross.png" alt="delete"></a></td></tr>
+                                <tr><td><%=dato[index].id_detallesalida%></td><td><%=dato[index].id_salida%></td><td><%= dato[index].id_product %></td><td><%=dato[index].fecha%></td><td><%=dato[index].cantidad%></td><td><a href="/goformupdatedetallesalida/<%=dato[index].id_detallesalida%>"><img src="./sources/img/edit_icon_255891.png" alt="update"></a></td><td><a href="/deletedetallesalida/<%=dato[index].id_detallesalida%>"><img src="./sources/img/remove_delete_trash_icon_255976.png" alt="delete"></a></td></tr>
                             <% } %>
                         <% } %>
                     </tbody>

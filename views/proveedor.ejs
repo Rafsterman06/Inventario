@@ -13,7 +13,7 @@
     </head>
     <body>
         <div id="contenedor">
-            <a href="/goformcreateproveedor"><img src="./sources/img/plus.png" alt="createproveedor"></a>
+            
             <div id="contenedortabla">
                 <table>
                     <tr>
@@ -21,11 +21,12 @@
                         <th>Nombre</th>
                         <th>Direccion</th>
                         <th>Telefono</th>
+                        <th><a href="/goformcreateproveedor"><img src="./sources/img/circle_plus_icon_255898.png" alt="createproveedor"></a></th>
                     </tr>
                     <tbody id="tablaproveedor">
                         <% if (dato.length>0) { %>
                             <% for( let index = 0; index < dato.length; index++ ) { %>
-                                <tr><td><%=dato[index].id_prov%></td><td><%=dato[index].nombre%></td><td><%= dato[index].Direccion %></td><td><%=dato[index].telefono %></td><td><a href="/goformupdateproveedor/<%=dato[index].id_prov%>"><img src="./sources/img/edit.png" alt="updateproveedor"></a></td><td><a href="/deleteproveedor/<%=dato[index].id_prov%>"><img src="./sources/img/cross.png" alt="deletecliente"></a></td></tr>
+                                <tr><td><%=dato[index].id_prov%></td><td><%=dato[index].nombre%></td><td><%= dato[index].Direccion %></td><td><%=dato[index].telefono %></td><td><a href="/goformupdateproveedor/<%=dato[index].id_prov%>"><img src="./sources/img/edit_icon_255891.png" alt="updateproveedor"></a></td><td><a href="/deleteproveedor/<%=dato[index].id_prov%>"><img src="./sources/img/remove_delete_trash_icon_255976.png" alt="deletecliente"></a></td></tr>
                             <% } %>
                         <% } %>
                     </tbody>

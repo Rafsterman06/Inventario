@@ -14,17 +14,18 @@
     <body>
 		<div id="contenedor">
             <div id="contenedortabla">
-                <a href="/goformcreatecategoria"><img src="./sources/img/plus.png" alt="goformcreatecategoria"></a>
+                
                 <table>
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Descripcion</th>
+                        <th><a href="/goformcreatecategoria"><img src="./sources/img/circle_plus_icon_255898.png" alt="goformcreatecategoria"></a></th>
                     </tr>
                     <tbody id="tablacategoria">
                         <% if (dato.length>0) { %>
                             <% for( let index = 0; index < dato.length; index++ ) { %>
-                                <tr><td><%=dato[index].id_cat%></td><td><%=dato[index].nombre%></td><td><%= dato[index].Descripcion %></td><td><a href="/goformupdatecategoria/<%=dato[index].id_cat%>"><img src="./sources/img/edit.png" alt="updatecategoria"></a></td><td><a href="/deletecategoria/<%=dato[index].id_cat%>"><img src="./sources/img/cross.png" alt="deletecategoria"></a></td></tr>
+                                <tr><td><%=dato[index].id_cat%></td><td><%=dato[index].nombre%></td><td><%= dato[index].Descripcion %></td><td><a href="/goformupdatecategoria/<%=dato[index].id_cat%>"><img src="./sources/img/edit_icon_255891.png" alt="updatecategoria"></a></td><td><a href="/deletecategoria/<%=dato[index].id_cat%>"><img src="./sources/img/remove_delete_trash_icon_255976.png" alt="deletecategoria"></a></td></tr>
                             <% } %>
                         <% } %>
                     </tbody>

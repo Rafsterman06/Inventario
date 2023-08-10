@@ -550,7 +550,7 @@ class Server{
             conn.connect(function(err){
                 if(err) throw err;
                 else{
-                    let sql="UPDATE";
+                    let sql="UPDATE usuario SET usuario="+usuario+", passwordd="+passwordd+", rol="+rol+" WHERE id_us="+id_us+";";
                     conn.query(sql,function(err){
                         if(err) throw err;
                         else{
@@ -560,48 +560,23 @@ class Server{
                 }
             })
         });
-        this.app.get("/goregistrar",(req,res)=>{
-            res.render('registrar');
-        });
-    
-        this.app.get("/registrar",(req,res)=>{
-            let id_us=req.query.nrj;
-            let nombre=req.query.nombre;
-            let passw=req.query.passw;
-            let rol=req.query.privilegio;
-            let passSha1=Sha1(passw);
 
+        this.app.get('/deleteusuario/:id', (req, res) => {
+            let id_us=req.params.id;
             let conn=conexion.conexion();
-
-            if(rol=="Usuario"){
-                conn.connect(function(err){
-                    if(err) throw err;
-                    console.log("conectado!!");
-                    let sql="INSERT INTO usuarios (id_us,usuario,passwordd,rol) VALUES ('"+id_us+"','"+nombre+"','"+passSha1+"','"+rol+"')";
+            conn.connect(function(err){
+                if(err) throw err;
+                else{
+                    let sql="DELETE FROM usuarios WHERE id_us="+id_us+";";
                     conn.query(sql,function(err){
                         if(err) throw err;
                         else{
-                            console.log("Archivo Registrado con exito");
-                            res.render('registrar');
+                            res.redirect('/goproveedor');
                         }
                     });
-                });
-            }
-            else if(rol=="Administrador"){
-                conn.connect(function(err){
-                    if(err) throw err;
-                    console.log("conectado!!");
-                    let sql="INSERT INTO usuarios (id_us,usuario,passwordd,rol) VALUES ('"+id_us+"','"+nombre+"','"+passSha1+"','"+rol+"')";
-                    conn.query(sql,function(err){
-                        if(err) throw err;
-                        else{
-                            console.log("Archivo Registrado con exito");
-                            res.render('registrar');
-                        }
-                    });
-                });
-            }
-        });
+                }
+            });
+        });        
 
         this.app.get("/login",(req,res)=>{
             let usuar=req.query.usuar;
