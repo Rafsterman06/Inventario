@@ -1,19 +1,21 @@
-let express=require('express');
-let Sha1=require('sha1');
-const Conexion = require('./conexion');
+let express = require("express");
+//let mysql=require('mysql');
+let Conexion=require("./conexion");
 let conexion=new Conexion();
+let Sha1=require('sha1');
 let session=require('express-session');
 let cookieParser=require('cookie-parser');
 
+
 class Server{
     constructor(){
-        this.port=process.env.PORT;
-        
         this.app=express();
         
-        this.routes();
+        this.port=process.env.PORT;
         
         this.middlewares();
+        
+        this.routes();
         
         this.dbdatabase=process.env.MYSQLDATABASE;
         
@@ -29,22 +31,33 @@ class Server{
     }
 
     middlewares(){
-        this.app.use(express.static('public'));
-
-        this.app.set('view engine', 'ejs');
-
-        //para las cookies
-        this.app.use(cookieParser());
-
-        //para sesiones de usuarios
-        this.app.use(session({
-            secret: "amar",
-            saveUninitialized: true,
-            resave: true
-        }));
+          // se agregan las paginas estaticas 
+          this.app.use(express.static('public'));
+          // exportas ejs para poderlo usar
+          this.app.set('view engine', 'ejs');
+          //para las cookies
+          this.app.use(cookieParser());
+          //para sesiones de usuarios
+          this.app.use(session({
+              secret: "amar",
+              saveUninitialized: true,
+              resave: true
+          }));
     }
 
     routes(){
+        this.app.get('/holamundo', (req, res) => {
+            if(req.session.user){
+                if(req.session.user.rol=="Administrador"){
+                    res.send("hola mundo cruel");
+                }else{
+                    res.redirect('/');
+                }
+            }else{
+                  res.redirect('/');
+            }
+            
+        });
         this.app.get("/gocategoria",(req,res)=>{
             let conn=conexion.conexion();
             conn.connect(function (err){
@@ -577,42 +590,51 @@ class Server{
                 }
             });
         });        
-
+        
         this.app.get("/login",(req,res)=>{
             let usuar=req.query.usuar;
             let passw=req.query.passw;
+            
+            /////////////////////////////////////////////////
             let passSha1=Sha1(passw);
             
             let conn=conexion.conexion();
             conn.connect(function(err){
                 if(err) throw err;
                 console.log('Conectado!!!');
-                let sql="SELECT * FROM usuarios WHERE id_us='"+usuar+"'";
-                conn.query(sql,function (err,result){
+                let sql="SELECT * FROM usuarios WHERE id_us="+usuar+";";
+                conn.query(sql,function(err,result){
                     if(err) throw err;
-                    if(result.length>0){
-                        if(result[0].id_us==usuar){
-                            if(result[0].passwordd==passSha1){
-                                if(result[0].rol=="Administrador"){
-                                    res.render("loginadm");
-                                }
-                                else if(result[0].rol=="Usuario"){
-                                    res.render("loginusu");
-                                }
-                                else{
-                                    console.log("Error de privilegio!!!");
-                                }
+                    else{
+                        if(result.length>0){
+                            if((result[0].id_us==usuar) && (result[0].passwordd==passSha1) && (result[0].rol=="Administrador")){
+                                let user={
+                                    usr:usuar,
+                                    psw:passw,
+                                    rol:result[0].rol
+                                };
+                                req.session.user=user;
+                                req.session.save();
+                                res.render("loginadm");
+                                console.log("logrado");
+                            }else if((result[0].id_us==usuar) && (result[0].passwordd==passSha1) && (result[0].rol=="Administrador")){
+                                let user={
+                                    usr:usuar,
+                                    psw:passw,
+                                    rol:result[0].rol
+                                };
+                                req.session.user=user;
+                                req.session.save();
+                                res.render("loginusu");
                             }
                             else{
-                                console.log("Password no coincide!!!");
+                                console.log("segunda salida");
                             }
                         }
                         else{
-                            console.log("Usuario no existe!!!");
+                             res.redirect('/');
+                             console.log("primera salida");
                         }
-                    }
-                    else{
-                        res.send('no se ha encontrado nada!!');
                     }
                 });
             });

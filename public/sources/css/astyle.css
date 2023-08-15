@@ -33,7 +33,8 @@ body
     height: 110px;
     border-radius: 50%;
     position: fixed;
-    top: -12px;
+    top: -2px;
+    padding-top: 10px;
     left: calc(47% - 47px);
 }
 .box::before
