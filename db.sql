@@ -2,18 +2,19 @@ create database prueba123;
 use prueba123;
 
 create table categorias ( 
-id_cat int not null,
+id_cat int not null auto_increment,
 nombre varchar (100) not null,
 Descripcion varchar (1000),
-primary key (id_cat));
-
+primary key (id_cat)
+);
+/*
 create table provedor ( 
 id_prov int not null,
 nombre varchar (100) not null,
 Direccion varchar (50),
 telefono int,
 primary key(id_prov));
-
+*/
 create table producto(
 id_product int not null,
 id_cat int not null,
@@ -24,7 +25,7 @@ valor float not null,
 foreign key (id_cat)references categorias (id_cat) on update cascade on delete cascade,
 foreign key (id_prov)references provedor (id_prov) on update cascade on delete cascade,
 primary key (id_product));
- 
+ /*
 create table cliente( 
 id_cliente int  not null,
 nombre varchar (100)  not null,
@@ -49,7 +50,7 @@ foreign key (id_product)references producto (id_product) on update cascade on de
 foreign key (id_salida)references salida (id_salida) on update cascade on delete cascade,
 primary key (id_detallesalida));
  
- 
+ */
  CREATE TABLE usuarios (
   id_us VARCHAR(20) not null primary key,
   usuario varchar (20) not null,
@@ -66,12 +67,12 @@ INSERT INTO usuarios (id_us,usuario,passwordd,rol) value('ruth','ruth','b69f673c
 
 describe usuarios;
 select * from usuarios;
-
+/*
 INSERT INTO cliente (id_cliente,nombre,Direccion,telefono) value(1,'laceiba1','enunlugar','546582');
 INSERT INTO cliente (id_cliente,nombre,Direccion,telefono) value(2,'laceiba2','enunlugar','546582');
 INSERT INTO cliente (id_cliente,nombre,Direccion,telefono) value(3,'laceiba3','enunlugar','546582');
 INSERT INTO cliente (id_cliente,nombre,Direccion,telefono) value(4,'laceiba4','enunlugar','546582');
 INSERT INTO cliente (id_cliente,nombre,Direccion,telefono) value(5,'laceiba5','enunlugar','546582');
-
+*/
 
 UPDATE cliente SET 

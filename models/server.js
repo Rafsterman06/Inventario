@@ -86,7 +86,7 @@ class Server{
             conn.connect(function(err){
                 if(err) throw err;
                 console.log("conectado!!");
-                let sql="INSERT INTO categorias (id_cat,nombre,Descripcion) VALUES ("+id_cat+",'"+nombre+"','"+descripcion+"');";
+                let sql="INSERT INTO categorias (nombre,descripcion) VALUES ('"+nombre+"','"+descripcion+"');";
                 conn.query(sql,function(err){
                     if(err) throw err;
                     else{
@@ -312,17 +312,16 @@ class Server{
         });
 
         this.app.get('/createproducto', (req, res) => {
-            let id_product=req.query.id_product;
             let id_cat=req.query.id_cat;
-            let id_prov=req.query.id_prov;
             let nombre=req.query.nombre;
-            let cantidad=req.query.cantidad;
-            let valor=req.query.valor;
+            let descripcion=req.query.descripcion;
+            let stock=req.query.stock;
+            let minimo=req.query.minimo;
             let conn=conexion.conexion();
             conn.connect(function(err){
                 if(err) throw err;
                 else{
-                    let sql="INSERT INTO producto (id_product,id_cat,id_prov,nombre,cantidad,valor) VALUES ("+id_product+","+id_cat+","+id_prov+",'"+nombre+"',"+cantidad+","+valor+");";
+                    let sql="INSERT INTO producto (id_cat,nombre,descripcion,stock,stockminimo) VALUES ("+id_cat+",'"+nombre+"','"+descripcion+"',"+stock+","+minimo+");";
                     conn.query(sql,function(err){
                         if(err) throw err;
                          res.redirect('/goproducto');
@@ -538,13 +537,13 @@ class Server{
             let usuario=req.query.usuario;
             let passwordd=req.query.passwordd;
             passwordd=Sha1(passwordd);
-            let rol=req.query.rol;
+            let rol='Administrador';
 
             let conn=conexion.conexion();
             conn.connect(function(err){
                 if(err) throw err;
                 else{
-                    let sql="INSERT INTO usuarios (id_us,usuario,passwordd,rol) VALUES ("+id_us+",'"+usuario+"','"+passwordd+"','"+rol+"');";
+                    let sql="INSERT INTO usuarios (id_us,usuario,passwordd,rol) VALUES ('"+id_us+"','"+usuario+"','"+passwordd+"','"+rol+"');";
                     conn.query(sql,function(err){
                         if(err) throw err;
                         else{
@@ -563,13 +562,12 @@ class Server{
             let id_us=req.params.id;
             let usuario=req.query.usuario
             let passwordd=req.query.passwordd
-            let rol=req.query.rol
             let conn=conexion.conexion();
 
             conn.connect(function(err){
                 if(err) throw err;
                 else{
-                    let sql="UPDATE usuario SET usuario="+usuario+", passwordd="+passwordd+", rol="+rol+" WHERE id_us="+id_us+";";
+                    let sql="UPDATE usuarios SET usuario='"+usuario+"', passwordd='"+passwordd+"' WHERE id_us='"+id_us+"';";
                     conn.query(sql,function(err){
                         if(err) throw err;
                         else{
