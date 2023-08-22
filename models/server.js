@@ -547,6 +547,9 @@ class Server{
                     let sql="INSERT INTO usuarios (id_us,usuario,passwordd,rol) VALUES ("+id_us+",'"+usuario+"','"+passwordd+"','"+rol+"');";
                     conn.query(sql,function(err){
                         if(err) throw err;
+                        else{
+                             res.redirect('/gousuario');
+                        }
                     });
                 }
             });
@@ -583,11 +586,11 @@ class Server{
             conn.connect(function(err){
                 if(err) throw err;
                 else{
-                    let sql="DELETE FROM usuarios WHERE id_us="+id_us+";";
+                    let sql="DELETE FROM usuarios WHERE id_us='"+id_us+"';";
                     conn.query(sql,function(err){
                         if(err) throw err;
                         else{
-                            res.redirect('/goproveedor');
+                            res.redirect('/gousuario');
                         }
                     });
                 }

@@ -29,7 +29,7 @@
                     <tbody id="tablasalida">
                         <% if (dato.length>0) { %>
                             <% for( let index = 0; index < dato.length; index++ ) { %>
-                                <tr><td><%=dato[index].id_us%></td><td><%=dato[index].usuario%></td></td><td><a class="edit" href="/goformupdateusuario/<%=dato[index].id_us%>"><img src="./sources/img/edit_icon_255891.png" alt="updatecategoria"></a><a class="edit" href="/deleteusuario/<%=dato[index].id_us%>"><img src="./sources/img/remove_delete_trash_icon_255976.png" alt="deletecategoria"></a></td></tr>
+                                <tr><td><%=dato[index].id_us%></td><td><%=dato[index].usuario%></td></td><td><a class="edit" href="/goformupdateusuario/<%=dato[index].id_us%>"><img src="./sources/img/edit_icon_255891.png" alt="updateusuario"></a><a class="edit" href="/deleteusuario/<%=dato[index].id_us%>"><img src="./sources/img/remove_delete_trash_icon_255976.png" alt="deleteusuario"></a></td></tr>
                             <% } %>
                         <% } %>
                     </tbody>
