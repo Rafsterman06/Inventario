@@ -562,6 +562,7 @@ class Server{
             let id_us=req.params.id;
             let usuario=req.query.usuario
             let passwordd=req.query.passwordd
+            passwordd=Sha1(passwordd);
             let conn=conexion.conexion();
 
             conn.connect(function(err){
