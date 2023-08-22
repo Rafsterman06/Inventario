@@ -562,13 +562,13 @@ class Server{
             let id_us=req.params.id;
             let usuario=req.query.usuario
             let passwordd=req.query.passwordd
-            passwordd=Sha1(passwordd);
+            let passSha1=Sha1(passwordd);
             let conn=conexion.conexion();
 
             conn.connect(function(err){
                 if(err) throw err;
                 else{
-                    let sql="UPDATE usuarios SET usuario='"+usuario+"', passwordd='"+passwordd+"' WHERE id_us='"+id_us+"';";
+                    let sql="UPDATE usuarios SET usuario='"+usuario+"', passwordd='"+passSha1+"' WHERE id_us='"+id_us+"';";
                     conn.query(sql,function(err){
                         if(err) throw err;
                         else{
