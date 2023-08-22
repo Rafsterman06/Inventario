@@ -6,7 +6,6 @@ let Sha1=require('sha1');
 let session=require('express-session');
 let cookieParser=require('cookie-parser');
 
-
 class Server{
     constructor(){
         this.app=express();
@@ -31,21 +30,24 @@ class Server{
     }
 
     middlewares(){
-          // se agregan las paginas estaticas 
-          this.app.use(express.static('public'));
-          // exportas ejs para poderlo usar
-          this.app.set('view engine', 'ejs');
-          //para las cookies
-          this.app.use(cookieParser());
-          //para sesiones de usuarios
-          this.app.use(session({
-              secret: "amar",
-              saveUninitialized: true,
-              resave: true
-          }));
+        // se agregan las paginas estaticas 
+        this.app.use(express.static('public'));
+        // exportas ejs para poderlo usar
+        this.app.set('view engine', 'ejs');
+        //para las cookies
+        this.app.use(cookieParser());
+        //para sesiones de usuarios
+        this.app.use(session({
+            secret: "amar",
+            saveUninitialized: true,
+            resave: true
+        }));
     }
 
     routes(){
+        this.app.get('/pruebas', (req, res) => {
+            res.render('prueba');
+        });
         this.app.get('/holamundo', (req, res) => {
             if(req.session.user){
                 if(req.session.user.rol=="Administrador"){
@@ -58,6 +60,7 @@ class Server{
             }
             
         });
+        
         this.app.get("/gocategoria",(req,res)=>{
             let conn=conexion.conexion();
             conn.connect(function (err){
@@ -135,7 +138,7 @@ class Server{
                 }
             }); 
         });
-
+{
         this.app.get("/gocliente",(req,res)=>{
             let conn=conexion.conexion();
             conn.connect(function (err){
@@ -289,7 +292,7 @@ class Server{
                 }
             });
         });
-
+    }
         this.app.get("/goproducto",(req,res)=>{
             let conn=conexion.conexion();
             conn.connect(function (err){
@@ -371,7 +374,7 @@ class Server{
                 }
             });
         });
-
+{
         this.app.get("/goproveedor",(req,res)=>{
             let conn=conexion.conexion();
             conn.connect(function (err){
@@ -511,7 +514,7 @@ class Server{
                 }
             });
         });
-        
+    }
         this.app.get("/gousuario",(req,res)=>{
             let conn=conexion.conexion();
             conn.connect(function (err){
@@ -615,7 +618,12 @@ class Server{
                                 };
                                 req.session.user=user;
                                 req.session.save();
-                                res.render("loginadm");
+                                conn.query("SELECT * FROM producto",function(err,result2){
+                                    if(err) throw err;
+                                    else{
+                                        res.render("loginadm",{dato:result2});
+                                    }
+                                });
                                 console.log("logrado");
                             }else if((result[0].id_us==usuar) && (result[0].passwordd==passSha1) && (result[0].rol=="Administrador")){
                                 let user={
@@ -628,6 +636,7 @@ class Server{
                                 res.render("loginusu");
                             }
                             else{
+                                res.redirect('/');
                                 console.log("segunda salida");
                             }
                         }

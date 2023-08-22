@@ -19,26 +19,7 @@
             </nav>
         </div>
         <div class="body">
-            <form id="loginform" action="/createcategoria">
-				<fieldset>
-                    <legend>CREANDO UNA NUEVA CATEGORIA</legend>
-					<div id="contenedortabla">
-						<table>
-							<tr>
-								<th><label for="nombre">Nombre</label></th>
-								<th><label for="descripcion">Descripcion</label></th>
-							</tr>
-							<tbody>
-								<tr>
-									<td><input type="text" name="nombre" id="nombre" placeholder="Nombre" required></td>
-									<td><input type="text" name="descripcion" id="descripcion" placeholder="Descripcion" required></td>
-								</tr>
-							</tbody>
-							<tfoot><tr><td><button type="submit" id="create">Agregar</button></td></tr></tfoot>
-						</table>
-					</div>
-				</fieldset>
-			</form>
+            
         </div>
       </section>
 </body>

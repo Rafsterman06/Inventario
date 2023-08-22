@@ -1,50 +1,51 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-	<meta charset="UTF-8">
-	<title>La Ceiba</title>
-	<link rel="stylesheet" href="/sources/css/estilos.css">
-	<link rel="shortcut icon" href="/sources/img/icons8-oak-tree-16.png" type="image/x-icon">
-        <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet"> 
-        <link rel="stylesheet" href="../sources/css/cliente.css">
+	<meta charset='utf-8'>
+	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+	<title>Page Title</title>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<link rel='stylesheet' type='text/css' media='screen' href='./sources/css/main.css'>
+	<script src='main.js'></script>
 </head>
 <body>
-	<div id="contenedor">
-		<div id="contenedorcentrado">
-			<div id="login">
-				<form id="loginform" action="/createproducto">
-					<fieldset>
-						<div class="divinput">
-							<label for="id_product">ID PRODUCTO</label>
-							<input type="text" name="id_product" id="id_product" placeholder="ID PRODUCTO" required>
-						</div>
-						<div class="divinput">
-							<label for="id_cat">ID CATEGORIA</label>
-							<input type="text" name="id_cat" id="id_cat" placeholder="ID CATEGORIA" required>
-						</div>
-						<div class="divinput">
-							<label for="id_prov">ID PROVEEDOR</label>
-							<input type="text" name="id_prov" id="id_prov" placeholder="ID PROVEEDOR" required>
-						</div>
-						<div class="divinput">
-							<label for="nombre">NOMBRE</label>
-							<input type="text" name="nombre" id="nombre" placeholder="NOMBRE" required>
-						</div>
-						<div class="divinput">
-							<label for="cantidad">CANTIDAD</label>
-							<input type="text" name="cantidad" id="cantidad" placeholder="CANTIDAD" required>
-						</div>
-						<div class="divinput">
-							<label for="valor">VALOR</label>
-							<input type="text" name="valor" id="valor" placeholder="VALOR" required>
-						</div>
-						<div class="divbutton">
-							<button type="submit" id="create">Agregar</button>
-						</div>
-					</fieldset>
-				</form>
-			</div>
-		</div>
-	</div>
+	<section class="layout">
+        <div id="sidebar">
+            <nav id="menu">
+                <div class="login-box"><img class ="avatar" src="./sources/img/logo.png" alt ="logo de la ceiba"></div>
+                <ul><li><a href="/gousuario"><img class="icono" src="./sources/img/account_circle_user_icon_255531.png" alt="usuario">Usuarios</a></li></ul>
+                <ul><li><a href="/goproducto">Producto</a></li></ul>
+                <ul><li><a href="/gocategoria">Categoria</a></li></ul>
+            </nav>
+        </div>
+        <div class="body">
+            <form id="loginform" action="/createproducto">
+				<fieldset>
+					<legend>CREANDO UN NUEVO PRODUCTO</legend>
+					<div id="contenedortabla">
+						<table>
+							<tr>
+								<th><label for="nombre">NOMBRE</label></th>
+								<th><label for="id_cat">ID CATEGORIA</label></th>
+								<th><label for="descripcion">DESCRIPCION</label></th>
+								<th><label for="stock">STOCK</label></th>
+								<th><label for="minimo">STOCK MINIMO</label></th>
+							</tr>
+							<tbody>
+								<tr>
+									<td><input type="text" name="nombre" id="nombre" placeholder="NOMBRE" required></td>
+									<td><input type="text" name="id_cat" id="id_cat" placeholder="ID CATEGORIA" required></td>
+									<td><input type="text" name="descripcion" id="descripcion" placeholder="DESCRIPCION" required></td>
+									<td><input type="text" name="stock" id="stock" placeholder="STOCK" required></td>
+									<td><input type="text" name="minimo" id="minimo" placeholder="STOCK MINIMO" required></td>
+								</tr>
+							</tbody>
+							<tfoot><tr><td><button type="submit" id="create">Agregar</button></td></tr></tfoot>
+						</table>
+					</div>
+				</fieldset>
+			</form>
+        </div>
+      </section>
 </body>
 </html>
