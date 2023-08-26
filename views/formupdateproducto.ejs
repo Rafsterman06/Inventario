@@ -27,7 +27,7 @@
 						<table>
 							<tr>
 								<th><label for="nombre">NOMBRE</label></th>
-								<th><label for="id_cat">ID CATEGORIA</label></th>
+								<th><label for="id_cat">CATEGORIA</label></th>
 								<th><label for="descripcion">DESCRIPCION</label></th>
 								<th><label for="stock">STOCK</label></th>
 								<th><label for="minimo">STOCK MINIMO</label></th>
@@ -35,7 +35,13 @@
 							<tbody>
 								<tr>
 									<td><input type="text" name="nombre" id="nombre" placeholder="NOMBRE" required></td>
-									<td><input type="text" name="id_cat" id="id_cat" placeholder="ID CATEGORIA" required></td>
+									<td><select name="id_cat">
+										<% if (dato2.length>0) { %>
+											<% for( let index = 0; index < dato2.length; index++ ) { %>
+												<option value="<%=dato2[index].id_cat%>"><%=dato2[index].nombre%></option>
+											<% } %>
+										<% } %>
+									</select></td>
 									<td><input type="text" name="descripcion" id="descripcion" placeholder="DESCRIPCION" required></td>
 									<td><input type="text" name="stock" id="stock" placeholder="STOCK" required></td>
 									<td><input type="text" name="minimo" id="minimo" placeholder="STOCK MINIMO" required></td>

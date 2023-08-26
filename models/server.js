@@ -78,7 +78,6 @@ class Server{
         });
 
         this.app.get("/createcategoria", (req, res) => {
-            let id_cat=req.query.id_cat;
             let nombre=req.query.nombre;
             let descripcion=req.query.descripcion;
             let conn=conexion.conexion();
@@ -138,6 +137,7 @@ class Server{
                 }
             }); 
         });
+
 {
         this.app.get("/gocliente",(req,res)=>{
             let conn=conexion.conexion();
@@ -293,6 +293,7 @@ class Server{
             });
         });
     }
+
         this.app.get("/goproducto",(req,res)=>{
             let conn=conexion.conexion();
             conn.connect(function (err){
@@ -308,7 +309,18 @@ class Server{
         });
 
         this.app.get('/goformcreateproducto', (req, res) => {
-            res.render('formcreateproducto');
+            let conn=conexion.conexion();
+            conn.connect(function(err){
+                if(err) throw err;
+                else{
+                    conn.query("SELECT * FROM categorias;",function(err,result){
+                        if(err) throw err;
+                        else{
+                            res.render('formcreateproducto',{dato:result});
+                        }
+                    });
+                }
+            });
         });
 
         this.app.get('/createproducto', (req, res) => {
@@ -332,21 +344,28 @@ class Server{
 
         this.app.get('/goformupdateproducto/:id', (req, res) => {
             let id_product=req.params.id;
-            res.render('formupdateproducto',{dato:id_product});
+            let conn=conexion.conexion();
+            conn.connect(function(err){
+                if(err) throw err;
+                else{
+                    conn.query("SELECT * FROM categorias;",function(err,result){
+                        res.render('formupdateproducto',{dato:id_product,dato2:result});
+                    });
+                }
+            });
         });
 
         this.app.get('/updateproducto/:id', (req, res) => {
             let id_product=req.params.id;
             let id_cat=req.query.id_cat;
-            let id_prov=req.query.id_prov;
             let nombre=req.query.nombre;
-            let cantidad=req.query.cantidad;
-            let valor=req.query.valor;
+            let stock=req.query.stock;
+            let stockminimo=req.query.minimo;
             let conn=conexion.conexion();
             conn.connect(function(err){
                 if(err) throw err;
                 else{
-                    let sql="UPDATE producto SET id_cat="+id_cat+", id_prov="+id_prov+", nombre='"+nombre+"', cantidad="+cantidad+", valor="+valor+" WHETE id_product="+id_product+";";
+                    let sql="UPDATE producto SET id_cat="+id_cat+", nombre='"+nombre+"', stock="+stock+", stockminimo="+stockminimo+" WHERE id_product="+id_product+";";
                     conn.query(sql,function(err){
                         if(err) throw err;
                         else{
@@ -373,6 +392,7 @@ class Server{
                 }
             });
         });
+
 {
         this.app.get("/goproveedor",(req,res)=>{
             let conn=conexion.conexion();
@@ -514,6 +534,7 @@ class Server{
             });
         });
     }
+    
         this.app.get("/gousuario",(req,res)=>{
             let conn=conexion.conexion();
             conn.connect(function (err){
