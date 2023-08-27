@@ -356,7 +356,10 @@ class Server{
                 if(err) throw err;
                 else{
                     conn.query("SELECT * FROM categorias;",function(err,result){
-                        res.render('formupdateproducto',{dato:id_product,dato2:result});
+                        if(err) throw err;
+                        else{
+                            res.render('formupdateproducto',{dato:id_product,dato2:result});
+                        }
                     });
                 }
             });
