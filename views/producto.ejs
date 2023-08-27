@@ -32,9 +32,9 @@
 					<th><a href="/goformcreateproducto"><img src="./sources/img/circle_plus_icon_255898.png" alt="createcliente"></a></th>
 				</tr>
 				<tbody id="tablaproducto">
-					<% if (dato.length>0) { %>
+					<% if ((dato.length>0) && (dato2.length>0)) { %>
 						<% for( let index = 0; index < dato.length; index++ ) { %>
-							<tr><td><%=dato[index].id_product %></td><td><%=dato[index].nombre %></td><td><%=dato[index].id_cat %></td><td><%=dato[index].descripcion%></td><td><%=dato[index].stock%></td><td><a class="edit" href="/goformupdateproducto/<%=dato[index].id_product%>"><img src="./sources/img/edit_icon_255891.png" alt="update"></a><a class="edit" href="/deleteproducto/<%=dato[index].id_product%>"><img src="./sources/img/remove_delete_trash_icon_255976.png" alt="delete"></a></td></tr>
+							<tr><td><%=dato[index].id_product %></td><td><%=dato[index].nombre %></td><td><%=dato2[dato[index].id_cat].nombre %></td><td><%=dato[index].descripcion%></td><td><%=dato[index].stock%></td><td><a class="edit" href="/goformupdateproducto/<%=dato[index].id_product%>"><img src="./sources/img/edit_icon_255891.png" alt="update"></a><a class="edit" href="/deleteproducto/<%=dato[index].id_product%>"><img src="./sources/img/remove_delete_trash_icon_255976.png" alt="delete"></a></td></tr>
 						<% } %>
 					<% } %>
 				</tbody>

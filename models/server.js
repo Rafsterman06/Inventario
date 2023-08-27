@@ -302,7 +302,14 @@ class Server{
                     let sql="SELECT * FROM producto;";
                     conn.query(sql,function(err,result){
                         if(err) throw err;
-                        res.render("producto",{dato:result});
+                        else{
+                            conn.query("SELECT * FROM categorias",function(err,result2){
+                                if(err) throw err;
+                                else{
+                                    res.render("producto",{dato:result,dato2:result2});
+                                }
+                            });
+                        }
                     });
                 }
             });
