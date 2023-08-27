@@ -316,7 +316,7 @@ class Server{
                     conn.query("SELECT * FROM categorias;",function(err,result){
                         if(err) throw err;
                         else{
-                            res.render('formcreateproducto',{dato:result});
+                            res.render('formcreateproducto',{dato2:result});
                         }
                     });
                 }
